@@ -2,35 +2,66 @@ package model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
+
+@Entity
+@NamedQuery(name ="readAllFluctExpenditures", query = "select fe from FluctExpenditures fe")
 public class FluctExpenditures {
 	
+	public enum Category {DAILY_NECESSITIES,ALCOHOL_TOBACCO, WORK_EDUCATION, TRAFFIC_CAR, RESTAURANT_HOTELS, CLOTHES_SHOES, 
+				   LEASURE_SPORT_CULTURE, OTHER, ALL}
+	
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String category;
+	private Category category;
 	private double price;
 	private LocalDate date;
 	private String comment;
+	private String path;
 	
-	
-	public FluctExpenditures(String category, double price, LocalDate date, String comment) {
+	public FluctExpenditures() {
 		super();
+	}
+	
+	public FluctExpenditures(Category category, double price, LocalDate date, String comment, String path) {
+		super();
+		
 		this.category = category;
 		this.price = price;
 		this.date = date;
 		this.comment = comment;
+		this.path = path;
 	}
-	public FluctExpenditures() {
-		super();
-	}
+//	public FluctExpenditures(long id, Category category, double price, LocalDate date, String comment, String path) {
+//		super();
+//		
+//		this.id = id;
+//		this.category = category;
+//		this.price = price;
+//		this.date = date;
+//		this.comment = comment;
+//		this.path = path;
+//	}
+//			
+			
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getCategory() {
+
+	public Category getCategory() {
 		return category;
 	}
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 	public double getPrice() {
@@ -51,11 +82,25 @@ public class FluctExpenditures {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	
 	@Override
 	public String toString() {
 		return "FluctExpenditures [id=" + id + ", category=" + category + ", price=" + price + ", date=" + date
-				+ ", comment=" + comment + "]";
+				+ ", comment=" + comment + ", path=" + path + "]";
 	}
+
+	public Object getCategoryIndex(int i) {
+		// TODO Auto-generated method stub
+		return category.ordinal();
+	}
+
 	
 	
 }

@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -12,37 +10,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="450.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="450.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TablesController">
   <tabs>
-    <Tab text="Categories">
+    <Tab fx:id="categoriesTab" text="Variable Expenditures">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="450.0">
                <children>
-                  <MenuButton layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="26.0">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                        <MenuItem mnemonicParsing="false" text="Action 3" />
-                        <MenuItem mnemonicParsing="false" text="Action 4" />
-                        <MenuItem mnemonicParsing="false" text="Action 5" />
-                        <MenuItem mnemonicParsing="false" text="Action 6" />
-                        <MenuItem mnemonicParsing="false" text="Action 7" />
-                        <MenuItem mnemonicParsing="false" text="Action 8" />
-                    </items>
-                  </MenuButton>
-                  <TableView layoutY="59.0" prefHeight="413.0" prefWidth="450.0">
+                  <TableView fx:id="tableView1" layoutY="59.0" prefHeight="375.0" prefWidth="450.0">
                     <columns>
-                        <TableColumn prefWidth="137.0" text="Category" />
-                      <TableColumn prefWidth="87.0" text="Price " />
-                      <TableColumn prefWidth="85.0" text="Date" />
-                        <TableColumn prefWidth="70.0" text="Edit" />
-                        <TableColumn prefWidth="70.0" text="Delete" />
+                        <TableColumn fx:id="category1Column" prefWidth="137.0" text="Category" />
+                      <TableColumn fx:id="price1Column" prefWidth="87.0" text="Price " />
+                      <TableColumn fx:id="date1Column" prefWidth="85.0" text="Date" />
+                        <TableColumn fx:id="comment1Column" prefWidth="70.0" text="Comment" />
+                        <TableColumn fx:id="delete1Column" prefWidth="70.0" text="Delete" />
                     </columns>
                   </TableView>
                   <HBox alignment="CENTER" layoutX="150.0" layoutY="15.0" prefHeight="25.0" prefWidth="250.0">
                      <children>
                         <Label text="Month:" />
-                        <ComboBox prefWidth="50.0">
+                        <ComboBox fx:id="monthComboBox1" onAction="#onMonthComboBox1Pressed" prefWidth="50.0">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -52,40 +38,44 @@
                               <Insets left="25.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox prefWidth="70.0">
+                        <ComboBox fx:id="yearComboBox1" onAction="#onYearComboBox1Pressesd" prefWidth="70.0">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
                         </ComboBox>
                      </children>
                   </HBox>
-               </children></AnchorPane>
+                  <ComboBox fx:id="categoryComboBox1" layoutY="15.0" onAction="#onCategoryComboBox1Pressed" prefHeight="25.0" prefWidth="100.0" promptText="Categories" />
+                  <HBox alignment="CENTER_LEFT" layoutX="115.0" layoutY="433.0" prefHeight="38.0" prefWidth="105.0">
+                     <children>
+                        <Label text="Sum:" />
+                        <Label fx:id="sumFluctExpendituresLabel" prefHeight="32.0" prefWidth="50.0">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
       </content>
     </Tab>
-    <Tab text="Expenditures">
+    <Tab fx:id="expendituresTab" text="Fixed Expenditures">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="450.0">
                <children>
-                  <MenuButton layoutY="15.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="32.0">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                        <MenuItem mnemonicParsing="false" text="Action 2" />
-                        <MenuItem mnemonicParsing="false" text="Action 3" />
-                     </items>
-                  </MenuButton>
-                  <TableView layoutY="59.0" prefHeight="413.0" prefWidth="450.0">
+                  <TableView fx:id="tableView2" layoutY="59.0" prefHeight="375.0" prefWidth="450.0">
                      <columns>
-                        <TableColumn prefWidth="137.0" text="Category" />
-                        <TableColumn prefWidth="87.0" text="Amount" />
-                        <TableColumn minWidth="0.0" prefWidth="85.0" text="Date" />
-                        <TableColumn prefWidth="70.0" text="Edit" />
-                        <TableColumn prefWidth="70.0" text="Delete" />
+                        <TableColumn fx:id="category2Column" prefWidth="137.0" text="Category" />
+                        <TableColumn fx:id="amount2Column" prefWidth="87.0" text="Amount" />
+                        <TableColumn fx:id="date2Column" minWidth="0.0" prefWidth="85.0" text="Date" />
+                        <TableColumn fx:id="delete2Column" prefWidth="70.0" text="Delete" />
                      </columns>
                   </TableView>
                   <HBox alignment="CENTER" layoutX="150.0" layoutY="15.0" prefHeight="25.0" prefWidth="250.0">
                      <children>
                         <Label text="Month:" />
-                        <ComboBox prefWidth="50.0">
+                        <ComboBox fx:id="monthComboBox2" prefWidth="50.0">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -95,41 +85,44 @@
                               <Insets left="25.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox prefWidth="70.0">
+                        <ComboBox fx:id="yearComboBox2" prefWidth="70.0">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
                         </ComboBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="115.0" layoutY="433.0" prefHeight="38.0" prefWidth="105.0">
+                     <children>
+                        <Label text="Sum:" />
+                        <Label fx:id="sumFixedExpendituresLabel" prefHeight="32.0" prefWidth="50.0">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
                      </children>
                   </HBox>
                </children>
             </AnchorPane>
          </content>
     </Tab>
-      <Tab text="Income">
+      <Tab fx:id="incomeTab" text="Income">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="450.0">
                <children>
-                  <MenuButton layoutY="15.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="32.0">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                        <MenuItem mnemonicParsing="false" text="Action 2" />
-                        <MenuItem mnemonicParsing="false" text="Action 3" />
-                     </items>
-                  </MenuButton>
-                  <TableView layoutY="59.0" prefHeight="413.0" prefWidth="450.0">
+                  <TableView fx:id="tableView3" layoutY="59.0" prefHeight="375.0" prefWidth="450.0">
                      <columns>
-                        <TableColumn prefWidth="137.0" text="Category" />
-                        <TableColumn prefWidth="87.0" text="Amount" />
-                        <TableColumn prefWidth="85.0" text="Date" />
-                        <TableColumn prefWidth="70.0" text="Edit" />
-                        <TableColumn prefWidth="70.0" text="Delete" />
+                        <TableColumn fx:id="category3Column" prefWidth="137.0" text="Category" />
+                        <TableColumn fx:id="amount3Column" prefWidth="87.0" text="Amount" />
+                        <TableColumn fx:id="date3Column" prefWidth="85.0" text="Date" />
+                        <TableColumn fx:id="comment3Column" prefWidth="70.0" text="Comment" />
+                        <TableColumn fx:id="delete3Column" prefWidth="70.0" text="Delete" />
                      </columns>
                   </TableView>
                   <HBox alignment="CENTER" layoutX="150.0" layoutY="15.0" prefHeight="25.0" prefWidth="250.0">
                      <children>
                         <Label text="Month:" />
-                        <ComboBox prefWidth="50.0">
+                        <ComboBox fx:id="monthComboBox3" prefWidth="50.0">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -139,11 +132,22 @@
                               <Insets left="25.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox prefWidth="70.0">
+                        <ComboBox fx:id="yearComboBox3" prefWidth="70.0">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
                         </ComboBox>
+                     </children>
+                  </HBox>
+                  <ComboBox fx:id="categoryComboBox3" layoutY="15.0" onAction="#onCategoryComboBox3Pressed" prefHeight="25.0" prefWidth="100.0" promptText="Categories" />
+                  <HBox alignment="CENTER_LEFT" layoutX="115.0" layoutY="433.0" prefHeight="38.0" prefWidth="105.0">
+                     <children>
+                        <Label text="Sum:" />
+                        <Label fx:id="sumIncomeLabel" prefHeight="32.0" prefWidth="50.0">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
                      </children>
                   </HBox>
                </children>

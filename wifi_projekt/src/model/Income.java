@@ -2,52 +2,94 @@ package model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
+
+@Entity
+@NamedQuery(name = "readAllIncome", query = "select inc from Income inc")
 public class Income {
-	
+
+	public enum CategoryInc {
+		WAGE_SALARY, INTEREST, OTHER
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String category;
-	private double amount;
-	private LocalDate date;
-	
-	public Income(long id, String category, double amount, LocalDate date) {
+	private CategoryInc categoryInc;
+	private double amountInc;
+	private LocalDate dateInc = LocalDate.now();
+	private String commentInc;
+
+	public Income(CategoryInc categoryInc, double amountInc, LocalDate dateInc, String commentInc) {
+		super();
+
+		this.categoryInc = categoryInc;
+		this.amountInc = amountInc;
+		this.dateInc = dateInc;
+		this.commentInc = commentInc;
+	}
+
+	public Income(long id, CategoryInc categoryInc, double amountInc, LocalDate dateInc, String commentInc) {
 		super();
 		this.id = id;
-		this.category = category;
-		this.amount = amount;
-		this.date = date;
+		this.categoryInc = categoryInc;
+		this.amountInc = amountInc;
+		this.dateInc = dateInc;
+		this.commentInc = commentInc;
 	}
-public Income() {
-	super();
-}
-public long getId() {
-	return id;
-}
-public void setId(long id) {
-	this.id = id;
-}
-public String getCategory() {
-	return category;
-}
-public void setCategory(String category) {
-	this.category = category;
-}
-public double getAmount() {
-	return amount;
-}
-public void setAmount(double amount) {
-	this.amount = amount;
-}
-public LocalDate getDate() {
-	return date;
-}
-public void setDate(LocalDate date) {
-	this.date = date;
-}
-@Override
-public String toString() {
-	return "Income [id=" + id + ", category=" + category + ", amount=" + amount + ", date=" + date + "]";
-}
 
+	public Income() {
+		super();
+	}
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public CategoryInc getCategoryInc() {
+		return categoryInc;
+	}
+
+	public void setCategoryInc(CategoryInc categoryInc) {
+		this.categoryInc = categoryInc;
+	}
+
+	public double getAmountInc() {
+		return amountInc;
+	}
+
+	public void setAmountInc(double amountInc) {
+		this.amountInc = amountInc;
+	}
+
+	public LocalDate getDateInc() {
+		return dateInc;
+	}
+
+	public void setDateInc(LocalDate dateInc) {
+		this.dateInc = dateInc;
+	}
+
+	public String getCommentInc() {
+		return commentInc;
+	}
+
+	public void setCommentInc(String commentInc) {
+		this.commentInc = commentInc;
+	}
+
+	@Override
+	public String toString() {
+		return "Income [id=" + id + ", categoryInc=" + categoryInc + ", amountInc=" + amountInc + ", dateInc=" + dateInc
+				+ ", commentInc=" + commentInc + "]";
+	}
 
 }

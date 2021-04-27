@@ -1,21 +1,24 @@
 package repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import model.FluctExpenditures;
+import model.FixedExpenditures;
 
 public interface FixedExpendituresRepository {
 
 	
-	void add (FluctExpenditures fluctExpenditures);
+	void add (FixedExpenditures fixedExpenditures);
 	
-	FluctExpenditures update (FluctExpenditures fluctExpenditures);
+	FixedExpenditures update (FixedExpenditures fixedExpenditures);
 	
-	Optional<FluctExpenditures> read(long id);
+	Optional<FixedExpenditures> read(long id);
 	
-	List<FluctExpenditures> readAll();
+	List<FixedExpenditures> readAll();
 	
-	void delete(FluctExpenditures fluctExpenditures);
+//	List<LocalDate> readYearsFixedExpenditures();
+	
+	void delete(FixedExpenditures fixedExpenditures);
 
 }

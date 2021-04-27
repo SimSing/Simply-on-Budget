@@ -3,20 +3,20 @@ package repository;
 import java.util.List;
 import java.util.Optional;
 
-import model.FixedExpenditures;
+import model.FluctExpenditures;
 
 
 public interface FluctExpendituresRepository {
 	
-	void add (FixedExpenditures fixedExpenditures);
+	void add (FluctExpenditures fluctExpenditures);
 	
-	FixedExpenditures update (FixedExpenditures fixedExpenditures);
+	FluctExpenditures update (FluctExpenditures fluctExpenditures);
 	
-	Optional<FixedExpenditures> read(long id);
+	Optional<FluctExpenditures> read(long id);
 	
-	List<FixedExpenditures> readAll();
+	List<FluctExpenditures> readAll();
 	
-	void delete(FixedExpenditures fixedExpenditures);
+	void delete(FluctExpenditures fluctExpenditures);
 
 
 }

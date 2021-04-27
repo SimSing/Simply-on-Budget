@@ -15,7 +15,7 @@
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                <children>
                   <Label text="Catgory:" />
-                  <TextField prefWidth="100.0">
+                  <TextField fx:id="categoryOtherTextField" prefWidth="100.0">
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin>
@@ -24,8 +24,8 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onSaveButtonPressed" prefWidth="52.0" text="Save" />
-                  <Button mnemonicParsing="false" onAction="#onCancelButtonPressed" text="Cancel">
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonPressed" prefWidth="52.0" text="Save" />
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonPressed" text="Cancel">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>

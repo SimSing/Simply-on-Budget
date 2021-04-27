@@ -7,43 +7,76 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExpenditureDetailsController">
+<AnchorPane minHeight="170.0" minWidth="300.0" prefHeight="170.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExpenditureDetailsController">
    <children>
-      <VBox layoutX="14.0" layoutY="27.0" prefHeight="120.0" prefWidth="268.0">
+      <AnchorPane fx:id="expenditureDetailsAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="300.0">
          <children>
-            <HBox prefHeight="80.0" prefWidth="200.0">
+            <VBox layoutY="27.0" prefHeight="120.0" prefWidth="300.0">
                <children>
-                  <Label text="Category:" />
-                  <TextField prefHeight="25.0" prefWidth="80.0">
-                     <HBox.margin>
-                        <Insets left="80.0" />
-                     </HBox.margin>
-                  </TextField>
+                  <HBox prefHeight="80.0" prefWidth="300.0">
+                     <children>
+                        <Label text="Category:">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="categoryTextField" prefHeight="25.0" prefWidth="80.0">
+                           <HBox.margin>
+                              <Insets left="80.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="300.0">
+                     <children>
+                        <Label text="Amount:">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="amountTextField" alignment="CENTER_RIGHT" onKeyTyped="#limitInputinTextfield" prefWidth="80.0">
+                           <HBox.margin>
+                              <Insets left="85.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            </VBox>
+            <HBox alignment="CENTER" layoutY="350.0" prefHeight="50.0" prefWidth="282.0" />
+            <HBox alignment="CENTER" layoutY="120.0" prefHeight="50.0" prefWidth="300.0">
                <children>
-                  <Label text="Amount:" />
-                  <TextField prefWidth="80.0">
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonPressed" prefWidth="50.0" text="Add" />
+                  <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonPressed" prefWidth="50.0" text="Exit">
                      <HBox.margin>
-                        <Insets left="85.0" />
+                        <Insets left="45.0" />
                      </HBox.margin>
-                  </TextField>
+                  </Button>
                </children>
             </HBox>
          </children>
-      </VBox>
-      <HBox alignment="CENTER" layoutY="350.0" prefHeight="50.0" prefWidth="282.0" />
-      <HBox alignment="CENTER" layoutY="120.0" prefHeight="50.0" prefWidth="260.0">
+      </AnchorPane>
+      <AnchorPane fx:id="negativeInputAnchorPane" prefHeight="170.0" prefWidth="300.0" style="visibility: false;">
          <children>
-            <Button mnemonicParsing="false" onAction="#onSaveButtonPressed" prefWidth="50.0" text="Save" />
-            <Button mnemonicParsing="false" onAction="#onExitButtonPressed" prefWidth="50.0" text="Exit">
-               <HBox.margin>
-                  <Insets left="45.0" />
-               </HBox.margin>
-            </Button>
+            <HBox prefHeight="54.0" prefWidth="300.0">
+               <children>
+                  <Label fx:id="negativeNumberLabel" alignment="CENTER" prefHeight="50.0" prefWidth="300.0" text="   You are about to input a negative number. " wrapText="true">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Label fx:id="confirmationLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="60.0" prefHeight="20.0" prefWidth="300.0" text="Are you sure?">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="yesButton" layoutX="91.0" layoutY="108.0" mnemonicParsing="false" onAction="#onYesButtonPressed" prefWidth="50.0" text="Yes" />
+            <Button fx:id="noButton" layoutX="184.0" layoutY="108.0" mnemonicParsing="false" onAction="#onNoButtonPressed" prefWidth="50.0" text="No" />
          </children>
-      </HBox>
+      </AnchorPane>
    </children>
 </AnchorPane>

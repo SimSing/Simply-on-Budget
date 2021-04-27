@@ -9,76 +9,78 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
-import model.Income;
+import model.Profile;
 
-public class IncomeRepositoryJPA implements IncomeRepository {
+public class ProfileRepositoryJPA implements ProfileRepository {
 	
 	public static final String PROJECT_DB ="jdbc:derby:helloDB; create=true; user=simon; password=test";
 	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("projectJPA");
 	private static final EntityManager em = emf.createEntityManager();
 
 	@Override
-	public void add(Income income) {
+	public void add(Profile profile) {
 
 		EntityTransaction et = em.getTransaction();	
 		et.begin();
-		em.persist(income);
+		em.persist(profile);
 		et.commit();
-		System.out.println("Income inserted");
+		
+		System.out.println("Profiles inserted");
 		
 	}
 
 	@Override
-	public Income update(Income income) {
+	public Profile update(Profile profile) {
 
 		EntityTransaction et = em.getTransaction();	
 		et.begin();
-		Income mergedIncome = em.merge(income);
+		Profile mergedprofiles = em.merge(profile);
 		et.commit();
 		
-		System.out.println("Income updated");
+		System.out.println("Profiles updated");
 		
-		return mergedIncome;
+		return mergedprofiles;
 	}
 
 	@Override
-	public Optional<Income> read(long id) {
+	public Optional<Profile> read(long id) {
 
-		Income income = null;
+		Profile profile = null;
 		EntityTransaction et = em.getTransaction();
 		
 		et.begin();
-		income = em.find(Income.class, id);
+		profile = em.find(Profile.class, id);
 		et.commit();
 		
-		System.out.println("Income read");
+		System.out.println("Profiles read");
 
-		return Optional.ofNullable(income);
+		return Optional.ofNullable(profile);
 	}
 
 	@Override
-	public List<Income> readAll() {
+	public List<Profile> readAll() {
 
-		List<Income> incomeList = new ArrayList<>();
+		List<Profile> profileList = new ArrayList<>();
 		EntityTransaction et = em.getTransaction();
 		
 		et.begin();
-		TypedQuery<Income> query = em.createNamedQuery("readAllIncome", Income.class);
-		incomeList = query.getResultList();
+		TypedQuery<Profile> query = em.createNamedQuery("readAllProfiles", Profile.class);
+		profileList = query.getResultList();
 		et.commit();
 		
-		System.err.println("All Income:" + "\n");
-		incomeList.forEach(t -> System.err.println(t));
-		return incomeList;
+		System.err.println("All Profile:" + "\n");
+		profileList.forEach(t -> System.err.println(t));
+		
+		return profileList;
 	}
 
 	@Override
-	public void delete(Income income) {
+	public void delete(Profile profile) {
 
-EntityTransaction transaction = em.getTransaction();
+		EntityTransaction transaction = em.getTransaction();
 		
 		transaction.begin();
-		em.remove(income);
+		em.remove(profile);
 		transaction.commit();
 	}
 

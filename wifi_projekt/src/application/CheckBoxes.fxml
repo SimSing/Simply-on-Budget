@@ -15,7 +15,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="410.0">
                <children>
                   <Label text="Daily necessities" />
-                  <CheckBox mnemonicParsing="false" onAction="#onDailyNecessitiesCheckboxPressed">
+                  <CheckBox fx:id="dailyNecessitiesCheckBox" mnemonicParsing="false" onAction="#onDailyNecessitiesCheckboxPressed">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -25,7 +25,7 @@
                         <Insets left="35.0" />
                      </HBox.margin>
                   </Label>
-                  <CheckBox mnemonicParsing="false" onAction="#onAlcoholTobaccoCheckboxPressed">
+                  <CheckBox fx:id="alcoholTobaccoCheckBox" mnemonicParsing="false" onAction="#onAlcoholTobaccoCheckboxPressed">
                      <HBox.margin>
                         <Insets left="34.0" />
                      </HBox.margin>
@@ -35,7 +35,7 @@
                         <Insets left="35.0" />
                      </HBox.margin>
                   </Label>
-                  <CheckBox mnemonicParsing="false" onAction="#onWorkEducationCheckboxPressed">
+                  <CheckBox fx:id="workEducationCheckBox" mnemonicParsing="false" onAction="#onWorkEducationCheckboxPressed">
                      <HBox.margin>
                         <Insets left="33.0" />
                      </HBox.margin>
@@ -45,7 +45,7 @@
                         <Insets left="35.0" />
                      </HBox.margin>
                   </Label>
-                  <CheckBox mnemonicParsing="false" onAction="#onOtherCheckboxPressed">
+                  <CheckBox fx:id="otherCheckBox" mnemonicParsing="false" onAction="#onOtherCheckboxPressed">
                      <HBox.margin>
                         <Insets left="109.0" />
                      </HBox.margin>
@@ -55,7 +55,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label text="Traffic and Car" />
-                  <CheckBox mnemonicParsing="false" onAction="#onTrafficCarCheckboxPressed">
+                  <CheckBox fx:id="trafficCarCheckBox" mnemonicParsing="false" onAction="#onTrafficCarCheckboxPressed">
                      <HBox.margin>
                         <Insets left="29.0" />
                      </HBox.margin>
@@ -65,7 +65,7 @@
                         <Insets left="35.0" />
                      </HBox.margin>
                   </Label>
-                  <CheckBox mnemonicParsing="false" onAction="#onRestaurantHotelsCheckboxPressed">
+                  <CheckBox fx:id="restaurantHotelsCheckBox" mnemonicParsing="false" onAction="#onRestaurantHotelsCheckboxPressed">
                      <HBox.margin>
                         <Insets left="23.0" />
                      </HBox.margin>
@@ -75,7 +75,7 @@
                         <Insets left="35.0" />
                      </HBox.margin>
                   </Label>
-                  <CheckBox mnemonicParsing="false" onAction="#onClothesShoesCheckboxPressed">
+                  <CheckBox fx:id="clothesShoesCheckBox" mnemonicParsing="false" onAction="#onClothesShoesCheckboxPressed">
                      <HBox.margin>
                         <Insets left="44.0" />
                      </HBox.margin>
@@ -85,7 +85,7 @@
                         <Insets left="35.0" />
                      </HBox.margin>
                   </Label>
-                  <CheckBox mnemonicParsing="false" onAction="#onLeasureSportCultureCheckboxPressed">
+                  <CheckBox fx:id="leasureSportCultureCheckBox" mnemonicParsing="false" onAction="#onLeasureSportCultureCheckboxPressed">
                      <HBox.margin>
                         <Insets left="22.0" />
                      </HBox.margin>
@@ -95,7 +95,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label text="Income" />
-                  <CheckBox mnemonicParsing="false" onAction="#onIncomeCheckboxPressed">
+                  <CheckBox fx:id="incomeCheckBox" mnemonicParsing="false" onAction="#onIncomeCheckboxPressed">
                      <HBox.margin>
                         <Insets left="65.0" />
                      </HBox.margin>
@@ -105,7 +105,7 @@
                         <Insets left="35.0" />
                      </HBox.margin>
                   </Label>
-                  <CheckBox mnemonicParsing="false" onAction="#onFixedExpendituresCheckboxPressed">
+                  <CheckBox fx:id="fixedExpenditureCheckBox" mnemonicParsing="false" onAction="#onFixedExpendituresCheckboxPressed">
                      <HBox.margin>
                         <Insets left="26.0" />
                      </HBox.margin>
@@ -115,7 +115,7 @@
                         <Insets left="35.0" />
                      </HBox.margin>
                   </Label>
-                  <CheckBox mnemonicParsing="false" onAction="#onFluctExpendituresPressed">
+                  <CheckBox fx:id="fluctExpendituresCheckBox" mnemonicParsing="false" onAction="#onFluctExpendituresPressed">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -125,7 +125,7 @@
                         <Insets left="35.0" />
                      </HBox.margin>
                   </Label>
-                  <CheckBox mnemonicParsing="false" onAction="#onTotalExpendituresPressed">
+                  <CheckBox fx:id="totalExpendituresCheckBox" mnemonicParsing="false" onAction="#onTotalExpendituresPressed">
                      <HBox.margin>
                         <Insets left="42.0" />
                      </HBox.margin>
@@ -143,7 +143,7 @@
       <HBox layoutX="100.0" layoutY="3.0" prefHeight="25.0" prefWidth="180.0">
          <children>
             <Label prefWidth="50.0" text="absolute" />
-            <CheckBox mnemonicParsing="false" onAction="#onAbsoluteCheckboxPressed">
+            <CheckBox fx:id="absoluteCheckBox" mnemonicParsing="false" onAction="#onAbsoluteCheckboxPressed">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -153,7 +153,7 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Label>
-            <CheckBox mnemonicParsing="false" onAction="#onRelativeCheckboxPressed">
+            <CheckBox fx:id="relativeCheckBox" mnemonicParsing="false" onAction="#onRelativeCheckboxPressed">
                <HBox.margin>
                   <Insets left="15.0" />
                </HBox.margin>
@@ -163,7 +163,7 @@
       <HBox layoutX="470.0" layoutY="3.0" prefHeight="25.0" prefWidth="300.0">
          <children>
             <Label text="Month" />
-            <CheckBox mnemonicParsing="false" onAction="#onMonthCheckboxPressed">
+            <CheckBox fx:id="monthCheckBox" mnemonicParsing="false" onAction="#onMonthCheckboxPressed">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -173,7 +173,7 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Label>
-            <CheckBox mnemonicParsing="false" onAction="#onYearCheckboxPressed">
+            <CheckBox fx:id="yearCheckBox" mnemonicParsing="false" onAction="#onYearCheckboxPressed">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -183,7 +183,7 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Label>
-            <CheckBox mnemonicParsing="false" onAction="#on5YearsCheckboxPressed">
+            <CheckBox fx:id="fiveYearsCheckBox" mnemonicParsing="false" onAction="#onFiveYearsCheckboxPressed">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
