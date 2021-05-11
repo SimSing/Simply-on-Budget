@@ -13,16 +13,6 @@
    <children>
       <AnchorPane fx:id="incomeDetailsAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0">
          <children>
-            <HBox alignment="CENTER" layoutY="150.0" prefHeight="50.0" prefWidth="300.0">
-               <children>
-                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonPressed" prefWidth="50.0" text="Add" />
-                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonPressed" prefWidth="50.0" text="Save">
-                     <HBox.margin>
-                        <Insets left="45.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
             <ComboBox fx:id="categoryComboBox" layoutX="14.0" layoutY="38.0" prefHeight="25.0" prefWidth="112.0" promptText="Category:" />
             <TextField fx:id="amountTextField" layoutX="191.0" layoutY="38.0" prefHeight="25.0" prefWidth="73.0" />
             <Label layoutX="21.0" layoutY="100.0" prefHeight="30.0" prefWidth="67.0" text="Comment:" AnchorPane.leftAnchor="21.0" />
@@ -49,5 +39,20 @@
             <Button fx:id="noButton" layoutX="184.0" layoutY="108.0" mnemonicParsing="false" onAction="#onNoButtonPressed" prefWidth="50.0" text="No" />
          </children>
       </AnchorPane>
+      <HBox alignment="CENTER" layoutY="150.0" prefHeight="50.0" prefWidth="300.0">
+         <children>
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonPressed" prefWidth="50.0" text="Exit">
+               <HBox.margin>
+                  <Insets right="42.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonPressed" prefWidth="50.0" text="Save" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonPressed" prefWidth="50.0" text="Add">
+               <HBox.margin>
+                  <Insets left="42.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

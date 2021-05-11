@@ -16,6 +16,8 @@ public interface FluctExpendituresRepository {
 	
 	List<FluctExpenditures> readAll();
 	
+//	List<FluctExpenditures> readDatePriceCategories();
+	
 	void delete(FluctExpenditures fluctExpenditures);
 
 

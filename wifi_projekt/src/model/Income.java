@@ -18,11 +18,11 @@ public class Income {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	private CategoryInc categoryInc;
-	private double amountInc;
-	private LocalDate dateInc = LocalDate.now();
-	private String commentInc;
+	public long id;
+	public CategoryInc categoryInc;
+	public double amountInc;
+	public LocalDate dateInc = LocalDate.now();
+	public String commentInc;
 
 	public Income(CategoryInc categoryInc, double amountInc, LocalDate dateInc, String commentInc) {
 		super();

@@ -1,6 +1,7 @@
 package model;
 
 
+
 import java.time.Year;
 
 import jakarta.persistence.Entity;
@@ -17,23 +18,18 @@ public class Inflation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	private double inflationFigure;
-	private Year inflationYear;
+	public long id;
+	public Double inflationFigure;
+	public Year inflationYear;
 	
-	public Inflation(Year inflationYear, double inflationFigure) {
+	public Inflation(Year inflationYear, Double inflationFigure) {
 		super();
 		
 		this.inflationYear = inflationYear;
 		this.inflationFigure = inflationFigure;
 	}
 	
-	public Inflation(long id, double inflationFigure, Year inflationYear) {
-		super();
-		this.id = id;
-		this.inflationYear = inflationYear;
-		this.inflationFigure = inflationFigure;
-	}
+
 	
 	public Inflation () {
 		super();
@@ -44,16 +40,16 @@ public class Inflation {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Year getYear() {
+	public Year getInflationYear() {
 		return inflationYear;
 	}
-	public void setYear(Year inflationYear) {
+	public void setInflationYear(Year inflationYear) {
 		this.inflationYear = inflationYear;
 	}
-	public double getInflationFigure() {
+	public Double getInflationFigure() {
 		return inflationFigure;
 	}
-	public void setInflationFigure(double inflationFigure) {
+	public void setInflationFigure(Double inflationFigure) {
 		this.inflationFigure = inflationFigure;
 	}
 	@Override

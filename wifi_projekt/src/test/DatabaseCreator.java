@@ -19,20 +19,20 @@ import model.FluctExpenditures.Category;
 public class DatabaseCreator {
 	public static final String PROJECT_DB ="jdbc:derby:helloDB; create=true; user=simon; password=test";
 	public static void main (String[] args) {
+		System.out.println("test");
 		insertTestData();
+		
 	}
-//	private static void createTable() {
-//		
-//	}
-//	private static void dropTable() {
-//		
-//	}
+	
+
 	private static void insertTestData() {
 		
 		List<FixedExpenditures> fixedExpenditures = List.of (new FixedExpenditures("Rent", 1500.25, LocalDate.now() ));
 		List<Income> income = List.of(new Income(CategoryInc.WAGE_SALARY, 3000.25, LocalDate.now(), "testdata"));
 		List<FluctExpenditures> fluctExpenditures = List.of(new FluctExpenditures(Category.DAILY_NECESSITIES, 40.25, LocalDate.now(), "food", "billa"));
-		List<Inflation> inflation =List.of(new Inflation(1, 1.3, Year.now()));
+		List<Inflation> inflation =List.of(new Inflation(Year.now(), 3d), 
+											new Inflation(Year.now().minusYears(1), 5d),
+											new Inflation(Year.now().minusYears(2), 10d));
 		List<Profile> profileList = List.of(new Profile ("Simon", "test"));
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("projectJPA");
@@ -48,12 +48,14 @@ public class DatabaseCreator {
 		for(FluctExpenditures fle : fluctExpenditures) {
 			em.persist(fle);
 		}
-		for(Income in : income) {
-			em.persist(in);
-		}
+		
 		for(Inflation inf : inflation) {
 			em.persist(inf);
 		}
+		for(Income in : income) {
+			em.persist(in);
+		}
+
 		transaction.commit();
 		
 		em.close();

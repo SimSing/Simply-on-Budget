@@ -1,25 +1,20 @@
 package controller;
 
 import java.net.URL;
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,6 +31,7 @@ import model.FluctExpenditures;
 import model.FluctExpenditures.Category;
 import model.Income;
 import model.Income.CategoryInc;
+import model.Inflation;
 
 public class TablesController extends CommonPropertiesController {
 
@@ -91,9 +87,6 @@ public class TablesController extends CommonPropertiesController {
 	private Tab expendituresTab;
 
 	@FXML
-	private TableColumn<FixedExpenditures, String> category2Column;
-
-	@FXML
 	private TableColumn<FixedExpenditures, Number> amount2Column;
 
 	@FXML
@@ -103,10 +96,12 @@ public class TablesController extends CommonPropertiesController {
 	private TableColumn<FixedExpenditures, String> delete2Column;
 
 	@FXML
+	private TableColumn<FixedExpenditures, String> category2Column;
+	@FXML
 	private ComboBox<Month> monthComboBox2;
 
 	@FXML
-	private ComboBox<Year> yearComboBox2;
+	private ComboBox<Integer> yearComboBox2;
 
 	@FXML
 	private ComboBox<Category> categoryComboBox2;
@@ -127,16 +122,13 @@ public class TablesController extends CommonPropertiesController {
 	private TableColumn<Income, String> date3Column;
 
 	@FXML
-	private TableColumn<Income, String> comment3Column;
-
-	@FXML
 	private TableColumn<Income, String> delete3Column;
 
 	@FXML
 	private ComboBox<Month> monthComboBox3;
 
 	@FXML
-	private ComboBox<LocalDate> yearComboBox3;
+	private ComboBox<Integer> yearComboBox3;
 
 	@FXML
 	private ComboBox<CategoryInc> categoryComboBox3;
@@ -157,98 +149,91 @@ public class TablesController extends CommonPropertiesController {
 			}
 		}
 
-		sumColumn1();
-
-	}
-
-	@FXML
-	void onMonthComboBox1Pressed(ActionEvent event) {
-		tableView1.setItems(fluctExpendituresList);
-
-		for (int i = 0; i <= 7; i++) {
-			if (categoryComboBox1.getSelectionModel().isSelected(i)) {
-				filterCategories(categoryComboBox1.getSelectionModel().getSelectedItem().toString());
-
+		for (int i = 0; i <= yearComboBox1.getItems().size(); i++) {
+			if (yearComboBox1.getSelectionModel().isSelected(i)) {
+				filterYear(yearComboBox1.getItems().get(i));
 			}
 		}
 
-		for (int i = 0; i <= 11; i++) {
-			if (monthComboBox1.getSelectionModel().isSelected(i)) {
-				filterMonth(Month.of(i + 1));
-			}
+		if (fluctExpendituresList.size() > 0) {
+			sumColumn1();
 		}
-		sumColumn1();
 
 	}
 
-	@FXML
-	void onYearComboBox1Pressesd(ActionEvent event) {
-		sumColumn1();
-	}
 	
-
 
 	@FXML
 	void onMonthComboBox2Pressed(ActionEvent event) {
 
-		tableView3.setItems(incomeList);
+		tableView2.setItems(fixedExpendituresList);
 
-		for (int i = 0; i <= 2; i++) {
-			if (categoryComboBox3.getSelectionModel().isSelected(0)) {
-				filterCategoriesInc(categoryComboBox3.getSelectionModel().getSelectedItem().toString());
-			}
 
-		}
 		for (int i = 0; i <= 11; i++) {
-			if (monthComboBox1.getSelectionModel().isSelected(i)) {
-				filterMonth(Month.of(i + 1));
+			if (monthComboBox2.getSelectionModel().isSelected(i)) {
+				filterMonthFixedExp(Month.of(i + 1));
 			}
 		}
-		sumColumn2();
+		for (int i = 0; i <= yearComboBox2.getItems().size(); i++) {
+			if (yearComboBox2.getSelectionModel().isSelected(i)) {
+				filterYearFixedExp(yearComboBox2.getItems().get(i));
+			}
+		}
+		if (fixedExpendituresList.size() > 0) {
+			sumColumn2();
+		}
+
 	}
-
-
-
 	
+	
+
 	@FXML
 	void onCategoryComboBox3Pressed(ActionEvent event) {
 		tableView3.setItems(incomeList);
 
 		for (int i = 0; i <= 2; i++) {
-			if (categoryComboBox3.getSelectionModel().isSelected(0)) {
+			if (categoryComboBox3.getSelectionModel().isSelected(i)) {
 				filterCategoriesInc(categoryComboBox3.getSelectionModel().getSelectedItem().toString());
-			}
 
-		}
-		for (int i = 0; i <= 11; i++) {
-			if (monthComboBox1.getSelectionModel().isSelected(i)) {
-				filterMonth(Month.of(i + 1));
 			}
 		}
-		sumColumn3();
+
+		for (int i = 0; i <= 11; i++) {
+			if (monthComboBox3.getSelectionModel().isSelected(i)) {
+				filterMonthInc(Month.of(i + 1));
+			}
+		}
+		for (int i = 0; i <= yearComboBox3.getItems().size()-1; i++) {
+			if (yearComboBox3.getSelectionModel().isSelected(i)) {
+				filterYearInc(yearComboBox3.getSelectionModel().getSelectedItem());
+			}
+		}
+		if (incomeList.size() > 0) {
+			sumColumn3();
+		}
 
 	}
 
+	
+	
 	@FXML
 	void onCategoriesTabChanged(ActionEvent event) {
-		if(categoriesTab.isSelected()) {
+		if (categoriesTab.isSelected()) {
 			sumColumn1();
 		}
 	}
-	
+
 	void onfixedExpendituresTabChanged(ActionEvent event) {
-		if(expendituresTab.isSelected()) {
+		if (expendituresTab.isSelected()) {
 			sumColumn2();
 		}
 	}
 
-	
 	void onIncomeTabChanged(ActionEvent event) {
-		if(incomeTab.isSelected()) {
+		if (incomeTab.isSelected()) {
 			sumColumn3();
 		}
 	}
-
 
 	@FXML
 	void initialize() {
@@ -285,8 +270,6 @@ public class TablesController extends CommonPropertiesController {
 				: "fx:id=\"category3Column\" was not injected: check your FXML file 'Tables.fxml'.";
 		assert amount3Column != null : "fx:id=\"amount3Column\" was not injected: check your FXML file 'Tables.fxml'.";
 		assert date3Column != null : "fx:id=\"date3Column\" was not injected: check your FXML file 'Tables.fxml'.";
-		assert comment3Column != null
-				: "fx:id=\"comment3Column\" was not injected: check your FXML file 'Tables.fxml'.";
 		assert delete3Column != null : "fx:id=\"delete3Column\" was not injected: check your FXML file 'Tables.fxml'.";
 		assert monthComboBox3 != null
 				: "fx:id=\"monthComboBox3\" was not injected: check your FXML file 'Tables.fxml'.";
@@ -299,16 +282,27 @@ public class TablesController extends CommonPropertiesController {
 				: "fx:id=\"sumFixedExpendituresLabel\" was not injected: check your FXML file 'Tables.fxml'.";
 		assert sumFluctExpendituresLabel != null
 				: "fx:id=\"sumFluctExpendituresLabel\" was not injected: check your FXML file 'Tables.fxml'.";
+
+		List<Integer> fluctExpendituresYearsList = (fluctExpendituresList.stream()
+																		 .map(f -> f.getDate().getYear())
+																		 .sorted()
+																		 .distinct().collect(Collectors.toList()));
 		
+		List<Integer> fixedExpendituresYearsList = (fixedExpendituresList.stream()
+																		 .map(f -> f.getDateFixedExpenditures().getYear())
+																		 .sorted()
+																		 .distinct().collect(Collectors.toList()));
 		
-		
-		
-		
-		List<Integer> fluctExpendituresYearsList = (fluctExpendituresList.stream().map(f -> f.getDate().getYear())
-				.distinct().collect(Collectors.toList()));
+		List<Integer> incomeYearsList = 			(incomeList.stream()
+				 											   .map(f -> f.getDateInc().getYear())
+				 											   .sorted()
+				 											   .distinct().collect(Collectors.toList()));
+
+		adjustForInflation();
 
 		// fill Category-comboBoxes
 		categoryComboBox1.getItems().setAll(Category.values());
+		categoryComboBox1.getItems().remove(Category.ALL);
 		categoryComboBox3.getItems().setAll(CategoryInc.values());
 
 		// fill month-comboBoxes
@@ -316,10 +310,11 @@ public class TablesController extends CommonPropertiesController {
 		monthComboBox2.getItems().setAll(Month.values());
 		monthComboBox3.getItems().setAll(Month.values());
 
-
 		// fill year-comboBoxes
 		yearComboBox1.getItems().setAll(fluctExpendituresYearsList);
-
+		yearComboBox2.getItems().setAll(fixedExpendituresYearsList);
+		yearComboBox3.getItems().setAll(incomeYearsList);
+		
 		// set default tableView-items
 		tableView1.setItems(fluctExpendituresList);
 		tableView2.setItems(fixedExpendituresList);
@@ -341,7 +336,9 @@ public class TablesController extends CommonPropertiesController {
 
 				System.out.println("Table Selection Changed called: " + newValue);
 				selectedFluctExpendituresProperty.set(newValue);
-				sumColumn1();
+				if (fluctExpendituresList.size() > 0) {
+					sumColumn1();
+				}
 			}
 
 		});
@@ -353,7 +350,7 @@ public class TablesController extends CommonPropertiesController {
 		category2Column.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCategory()));
 		amount2Column.setCellValueFactory(data -> new SimpleDoubleProperty(data.getValue().getAmount()));
 		date2Column
-				.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDate().format(dateFormatter)));
+				.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDateFixedExpenditures().format(dateFormatter)));
 
 		tableView2.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<FixedExpenditures>() {
 
@@ -363,7 +360,9 @@ public class TablesController extends CommonPropertiesController {
 
 				System.out.println("Table Selection Changed called: " + newValue);
 				selectedFixedExpendituresProperty.set(newValue);
-				sumColumn2();
+				if (fixedExpendituresList.size() > 0) {
+					sumColumn2();
+				}
 			}
 
 		});
@@ -377,7 +376,6 @@ public class TablesController extends CommonPropertiesController {
 		amount3Column.setCellValueFactory(data -> new SimpleDoubleProperty(data.getValue().getAmountInc()));
 		date3Column.setCellValueFactory(
 				data -> new SimpleStringProperty(data.getValue().getDateInc().format(dateFormatter)));
-		comment3Column.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCommentInc()));
 
 		tableView3.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Income>() {
 
@@ -386,7 +384,10 @@ public class TablesController extends CommonPropertiesController {
 
 				System.out.println("Table Selection Changed called: " + newValue);
 				selectedIncomeProperty.set(newValue);
-				sumColumn3();
+
+				if (incomeList.size() > 0) {
+					sumColumn3();
+				}
 			}
 		});
 
@@ -504,11 +505,17 @@ public class TablesController extends CommonPropertiesController {
 		/*
 		 * filter-methods (Category)
 		 */
-		
-		//initally summing up the values price/amount columns of the respective tables
-		sumColumn1();
-		sumColumn2();
-		sumColumn3();
+
+		// initally summing up the values price/amount columns of the respective tables
+		if (fluctExpendituresList.size() > 0) {
+			sumColumn1();
+		}
+		if (fixedExpendituresList.size() > 0) {
+			sumColumn2();
+		}
+		if (incomeList.size() > 0) {
+			sumColumn3();
+		}
 	}
 
 	private void filterCategories(String categories) {
@@ -537,19 +544,96 @@ public class TablesController extends CommonPropertiesController {
 		tableView1.setItems(itemsFluctExp);
 
 	}
+	private void filterMonthFixedExp(Month month) {
+		FilteredList<FixedExpenditures> itemsFixedExp = new FilteredList<>(tableView2.getItems());
+		Predicate<FixedExpenditures> itemsMonth = i -> i.getDateFixedExpenditures().getMonth() == month;
+		itemsFixedExp.setPredicate(itemsMonth);
+		tableView2.setItems(itemsFixedExp);
+
+	}
+	private void filterMonthInc(Month month) {
+		FilteredList<Income> itemsInc = new FilteredList<>(tableView3.getItems());
+		Predicate<Income> itemsMonth = i -> i.getDateInc().getMonth() == month;
+		itemsInc.setPredicate(itemsMonth);
+		tableView3.setItems(itemsInc);
+
+	}
+
+	private void filterYear(int year) {
+
+		FilteredList<FluctExpenditures> itemsFluctExp = new FilteredList<>(tableView1.getItems());
+		Predicate<FluctExpenditures> itemsYear = i -> i.getDate().getYear() == year;
+		itemsFluctExp.setPredicate(itemsYear);
+		tableView1.setItems(itemsFluctExp);
+	}
+	
+	private void filterYearFixedExp(int year) {
+
+		FilteredList<FixedExpenditures> itemsFixedExp = new FilteredList<>(tableView2.getItems());
+		Predicate<FixedExpenditures> itemsYear = i -> i.getDateFixedExpenditures().getYear() == year;
+		itemsFixedExp.setPredicate(itemsYear);
+		tableView2.setItems(itemsFixedExp);
+	}
+	
+	private void filterYearInc(int year) {
+
+		FilteredList<Income> itemsInc = new FilteredList<>(tableView3.getItems());
+		Predicate<Income> itemsYear = i -> i.getDateInc().getYear() == year;
+		itemsInc.setPredicate(itemsYear);
+		tableView3.setItems(itemsInc);
+	}
+	
 
 	private void sumColumn1() {
-		Double sum = tableView1.getItems().stream().mapToDouble(i -> i.getPrice()).sum();
+		Double sum = 0d;
+		sum = tableView1.getItems().stream().mapToDouble(i -> i.getPrice()).sum();
 		sumFluctExpendituresLabel.setText(sum.toString());
 	}
 
 	private void sumColumn2() {
-		Double sum = tableView2.getItems().stream().mapToDouble(i -> i.getAmount()).sum();
+		Double sum = 0d;
+		sum = tableView2.getItems().stream().mapToDouble(i -> i.getAmount()).sum();
 		sumFixedExpendituresLabel.setText(sum.toString());
 	}
-	
+
 	private void sumColumn3() {
-		Double sum = tableView3.getItems().stream().mapToDouble(i -> i.getAmountInc()).sum();
+		Double sum = 0d;
+		sum = tableView3.getItems().stream().mapToDouble(i -> i.getAmountInc()).sum();
 		sumIncomeLabel.setText(sum.toString());
 	}
+
+	private void adjustForInflation() {
+		
+		//create List with only the inflation-values 
+		ArrayList<Double> inflationValuesRaw = new ArrayList<>(
+				inflationList.stream().sorted(Comparator.comparing(Inflation::getInflationYear).reversed())
+						.map(f -> f.getInflationFigure()).collect(Collectors.toList()));
+		
+		/*transform values to percent and also account for the time-dependency of inflation:
+		prices at the start of a year shouldn't be adjusted equally as prices at the end of a year, as
+		annual inflation depicts changes in prices only at the very end of the year. therefore uniform distribution 
+		of expenditures will be assumed and prices will be adjusted by ((inflation+(inflation/12))/2.
+		*/
+		
+		ArrayList<Double> inflationValuesPercent = new ArrayList<>();
+		for (int i = 0; i <= inflationValuesRaw.size() - 1; i++) {
+			inflationValuesPercent.add(i, 1 + (((inflationValuesRaw.get(i)) / 100)+((inflationValuesRaw.get(i))/1200))/2);
+		}
+		
+		//adjust values to base-year (inflation for prices in 2018 would be (inf2018 * inf2019 * inf2020)
+		System.out.println(inflationValuesPercent);
+		int n = inflationValuesPercent.size();
+		double prev = inflationValuesPercent.get(0);
+		for (int i = 1; i < n - 1; i++) {
+			double curr = inflationValuesPercent.get(i);
+			inflationValuesPercent.set(i, prev * inflationValuesPercent.get(i));
+			prev = curr;
+		}
+		inflationValuesPercent.set((n - 1), prev * inflationValuesPercent.get(n - 1) * inflationValuesPercent.get(0));
+		
+		//for ease of deploy reasons(not done yet)
+		Collections.reverse(inflationValuesPercent);
+		System.out.println(inflationValuesPercent);
+	}
+
 }

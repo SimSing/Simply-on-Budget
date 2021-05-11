@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-	<persistence-unit name="helloJPA" transaction-type="RESOURCE_LOCAL">
-		<class>model.FixedExpenditures</class>
-		<class>model.FluctExpenditures</class>
-		<class>model.Income</class>
+	<persistence-unit name="projectJPA" transaction-type="RESOURCE_LOCAL">
+	<class>model.FixedExpenditures</class>
+	<class>model.FluctExpenditures</class>
+	<class>model.Income</class>
+	<class>model.Inflation</class>
+	<class>model.Profile</class>
 		<properties>
 			<property name="jakarta.persistence.jdbc.url" value="jdbc:derby:projectDB;create=true"/>
 			<property name="jakarta.persistence.jdbc.user" value="simon"/>

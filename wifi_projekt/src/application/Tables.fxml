@@ -25,20 +25,20 @@
                         <TableColumn fx:id="delete1Column" prefWidth="70.0" text="Delete" />
                     </columns>
                   </TableView>
-                  <HBox alignment="CENTER" layoutX="150.0" layoutY="15.0" prefHeight="25.0" prefWidth="250.0">
+                  <HBox alignment="CENTER" layoutX="120.0" layoutY="15.0" prefHeight="25.0" prefWidth="320.0">
                      <children>
                         <Label text="Month:" />
-                        <ComboBox fx:id="monthComboBox1" onAction="#onMonthComboBox1Pressed" prefWidth="50.0">
+                        <ComboBox fx:id="monthComboBox1" onAction="#onCategoryComboBox1Pressed">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
                         </ComboBox>
                         <Label text="Year:">
                            <HBox.margin>
-                              <Insets left="25.0" />
+                              <Insets left="30.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox fx:id="yearComboBox1" onAction="#onYearComboBox1Pressesd" prefWidth="70.0">
+                        <ComboBox fx:id="yearComboBox1" onAction="#onCategoryComboBox1Pressed" prefWidth="70.0">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -46,16 +46,7 @@
                      </children>
                   </HBox>
                   <ComboBox fx:id="categoryComboBox1" layoutY="15.0" onAction="#onCategoryComboBox1Pressed" prefHeight="25.0" prefWidth="100.0" promptText="Categories" />
-                  <HBox alignment="CENTER_LEFT" layoutX="115.0" layoutY="433.0" prefHeight="38.0" prefWidth="105.0">
-                     <children>
-                        <Label text="Sum:" />
-                        <Label fx:id="sumFluctExpendituresLabel" prefHeight="32.0" prefWidth="50.0">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <Label fx:id="sumFluctExpendituresLabel" layoutX="137.0" layoutY="437.0" prefHeight="32.0" prefWidth="60.0" style="-fx-border-color: DARKSLATEGREY; -fx-background-color: LIGHTGRAY; -fx-border-width: 1;" text="=" />
                </children>
             </AnchorPane>
       </content>
@@ -72,36 +63,27 @@
                         <TableColumn fx:id="delete2Column" prefWidth="70.0" text="Delete" />
                      </columns>
                   </TableView>
-                  <HBox alignment="CENTER" layoutX="150.0" layoutY="15.0" prefHeight="25.0" prefWidth="250.0">
+                  <HBox alignment="CENTER" layoutX="120.0" layoutY="15.0" prefHeight="25.0" prefWidth="320.0">
                      <children>
                         <Label text="Month:" />
-                        <ComboBox fx:id="monthComboBox2" prefWidth="50.0">
+                        <ComboBox fx:id="monthComboBox2" onAction="#onMonthComboBox2Pressed">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
                         </ComboBox>
                         <Label text="Year:">
                            <HBox.margin>
-                              <Insets left="25.0" />
+                              <Insets left="30.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox fx:id="yearComboBox2" prefWidth="70.0">
+                        <ComboBox fx:id="yearComboBox2" onAction="#onMonthComboBox2Pressed" prefWidth="70.0">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
                         </ComboBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="115.0" layoutY="433.0" prefHeight="38.0" prefWidth="105.0">
-                     <children>
-                        <Label text="Sum:" />
-                        <Label fx:id="sumFixedExpendituresLabel" prefHeight="32.0" prefWidth="50.0">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <Label fx:id="sumFixedExpendituresLabel" layoutX="137.0" layoutY="437.0" prefHeight="32.0" prefWidth="60.0" style="-fx-border-color: DARKSLATEGREY; -fx-background-color: LIGHTGRAY; -fx-border-width: 1;" text="=" />
                </children>
             </AnchorPane>
          </content>
@@ -115,24 +97,23 @@
                         <TableColumn fx:id="category3Column" prefWidth="137.0" text="Category" />
                         <TableColumn fx:id="amount3Column" prefWidth="87.0" text="Amount" />
                         <TableColumn fx:id="date3Column" prefWidth="85.0" text="Date" />
-                        <TableColumn fx:id="comment3Column" prefWidth="70.0" text="Comment" />
                         <TableColumn fx:id="delete3Column" prefWidth="70.0" text="Delete" />
                      </columns>
                   </TableView>
-                  <HBox alignment="CENTER" layoutX="150.0" layoutY="15.0" prefHeight="25.0" prefWidth="250.0">
+                  <HBox alignment="CENTER" layoutX="120.0" layoutY="15.0" prefHeight="25.0" prefWidth="320.0">
                      <children>
                         <Label text="Month:" />
-                        <ComboBox fx:id="monthComboBox3" prefWidth="50.0">
+                        <ComboBox fx:id="monthComboBox3" onAction="#onCategoryComboBox3Pressed">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
                         </ComboBox>
                         <Label text="Year:">
                            <HBox.margin>
-                              <Insets left="25.0" />
+                              <Insets left="30.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox fx:id="yearComboBox3" prefWidth="70.0">
+                        <ComboBox fx:id="yearComboBox3" onAction="#onCategoryComboBox3Pressed" prefWidth="70.0">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -140,16 +121,7 @@
                      </children>
                   </HBox>
                   <ComboBox fx:id="categoryComboBox3" layoutY="15.0" onAction="#onCategoryComboBox3Pressed" prefHeight="25.0" prefWidth="100.0" promptText="Categories" />
-                  <HBox alignment="CENTER_LEFT" layoutX="115.0" layoutY="433.0" prefHeight="38.0" prefWidth="105.0">
-                     <children>
-                        <Label text="Sum:" />
-                        <Label fx:id="sumIncomeLabel" prefHeight="32.0" prefWidth="50.0">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <Label fx:id="sumIncomeLabel" layoutX="137.0" layoutY="437.0" prefHeight="32.0" prefWidth="60.0" style="-fx-border-color: DARKSLATEGREY; -fx-background-color: LIGHTGRAY; -fx-border-width: 1;" text="=" />
                </children>
             </AnchorPane>
          </content>

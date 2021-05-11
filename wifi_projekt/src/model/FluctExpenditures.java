@@ -10,7 +10,10 @@ import jakarta.persistence.NamedQuery;
 
 @Entity
 @NamedQuery(name ="readAllFluctExpenditures", query = "select fe from FluctExpenditures fe")
+
 public class FluctExpenditures {
+	
+	
 	
 	public enum Category {DAILY_NECESSITIES,ALCOHOL_TOBACCO, WORK_EDUCATION, TRAFFIC_CAR, RESTAURANT_HOTELS, CLOTHES_SHOES, 
 				   LEASURE_SPORT_CULTURE, OTHER, ALL}
@@ -19,12 +22,12 @@ public class FluctExpenditures {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	private Category category;
-	private double price;
-	private LocalDate date;
-	private String comment;
-	private String path;
+	public long id;
+	public Category category;
+	public double price;
+	public LocalDate date;
+	public String comment;
+	public String path;
 	
 	public FluctExpenditures() {
 		super();
@@ -39,17 +42,7 @@ public class FluctExpenditures {
 		this.comment = comment;
 		this.path = path;
 	}
-//	public FluctExpenditures(long id, Category category, double price, LocalDate date, String comment, String path) {
-//		super();
-//		
-//		this.id = id;
-//		this.category = category;
-//		this.price = price;
-//		this.date = date;
-//		this.comment = comment;
-//		this.path = path;
-//	}
-//			
+
 			
 	public long getId() {
 		return id;

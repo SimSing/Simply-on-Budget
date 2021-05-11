@@ -36,7 +36,7 @@
                               <Insets left="30.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="amountTextField" alignment="CENTER_RIGHT" onKeyTyped="#limitInputinTextfield" prefWidth="80.0">
+                        <TextField fx:id="amountTextField" onKeyTyped="#limitInputinTextfield" prefWidth="80.0">
                            <HBox.margin>
                               <Insets left="85.0" />
                            </HBox.margin>
@@ -48,10 +48,14 @@
             <HBox alignment="CENTER" layoutY="350.0" prefHeight="50.0" prefWidth="282.0" />
             <HBox alignment="CENTER" layoutY="120.0" prefHeight="50.0" prefWidth="300.0">
                <children>
-                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonPressed" prefWidth="50.0" text="Add" />
                   <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonPressed" prefWidth="50.0" text="Exit">
                      <HBox.margin>
-                        <Insets left="45.0" />
+                        <Insets right="42.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonPressed" prefWidth="50.0" text="Save" />
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonPressed" prefWidth="50.0" text="Add">
+                     <HBox.margin>
+                        <Insets left="42.0" />
                      </HBox.margin>
                   </Button>
                </children>

@@ -23,12 +23,12 @@
          <content>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <LineChart layoutX="14.0" prefHeight="383.0" prefWidth="751.0">
+                  <LineChart fx:id="lineChart" layoutX="14.0" prefHeight="383.0" prefWidth="751.0">
                     <xAxis>
-                      <CategoryAxis side="BOTTOM" />
+                      <CategoryAxis side="BOTTOM" fx:id="xAxis" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis side="LEFT" />
+                      <NumberAxis fx:id="yAxis" side="LEFT" />
                     </yAxis>
                   </LineChart>
                   <VBox layoutX="50.0" layoutY="480.0" prefHeight="120.0" prefWidth="740.0">
@@ -184,7 +184,7 @@
                   <HBox layoutX="470.0" layoutY="380.0" prefHeight="25.0" prefWidth="300.0">
                      <children>
                         <Label text="Month" />
-                        <CheckBox fx:id="monthCheckBox" mnemonicParsing="false" onAction="#onMonthCheckboxPressed">
+                        <CheckBox fx:id="monthCheckBox" mnemonicParsing="false" onAction="#onMonthCheckBoxPressed">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -194,7 +194,7 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <CheckBox fx:id="yearCheckBox" mnemonicParsing="false" onAction="#onYearCheckboxPressed">
+                        <CheckBox fx:id="yearCheckBox" mnemonicParsing="false" onAction="#onYearCheckBoxPressed">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -213,8 +213,8 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="200.0" layoutY="630.0" prefHeight="25.0" prefWidth="400.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#onUpdateButtonPressed" text="Update" />
-                        <Button mnemonicParsing="false" onAction="#onExitButtonPressed" prefWidth="55.0" text="Exit">
+                        <Button mnemonicParsing="false" text="Update" />
+                        <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonPressed" prefWidth="55.0" text="Exit">
                            <HBox.margin>
                               <Insets left="150.0" />
                            </HBox.margin>
@@ -228,7 +228,7 @@
          <content>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <BarChart layoutX="14.0" prefHeight="383.0" prefWidth="751.0">
+                  <BarChart fx:id="barChart" layoutX="14.0" prefHeight="383.0" prefWidth="751.0">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -241,7 +241,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="410.0">
                            <children>
                               <Label text="Daily necessities" />
-                              <CheckBox mnemonicParsing="false">
+                              <CheckBox fx:id="dailyNecessities2CheckBox" mnemonicParsing="false" onAction="#onDailyNecessities2CheckBoxPressed">
                                  <HBox.margin>
                                     <Insets left="20.0" />
                                  </HBox.margin>
@@ -251,7 +251,7 @@
                                     <Insets left="35.0" />
                                  </HBox.margin>
                               </Label>
-                              <CheckBox mnemonicParsing="false">
+                              <CheckBox fx:id="alcoholTobacco2CheckBox" mnemonicParsing="false" onAction="#onAlcoholTobacco2CheckBoxPressed">
                                  <HBox.margin>
                                     <Insets left="34.0" />
                                  </HBox.margin>
@@ -261,7 +261,7 @@
                                     <Insets left="35.0" />
                                  </HBox.margin>
                               </Label>
-                              <CheckBox mnemonicParsing="false">
+                              <CheckBox fx:id="workEducation2ChekBox" mnemonicParsing="false" onAction="#onWorkEducation2ChekBoxPressed">
                                  <HBox.margin>
                                     <Insets left="33.0" />
                                  </HBox.margin>
@@ -271,7 +271,7 @@
                                     <Insets left="35.0" />
                                  </HBox.margin>
                               </Label>
-                              <CheckBox mnemonicParsing="false">
+                              <CheckBox fx:id="other2CheckBox" mnemonicParsing="false" onAction="#onOther2CheckBoxPressed">
                                  <HBox.margin>
                                     <Insets left="109.0" />
                                  </HBox.margin>
@@ -281,7 +281,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Traffic and Car" />
-                              <CheckBox mnemonicParsing="false">
+                              <CheckBox fx:id="trafficCar2CheckBox" mnemonicParsing="false" onAction="#onTrafficCar2CheckBoxPressed">
                                  <HBox.margin>
                                     <Insets left="29.0" />
                                  </HBox.margin>
@@ -291,7 +291,7 @@
                                     <Insets left="35.0" />
                                  </HBox.margin>
                               </Label>
-                              <CheckBox mnemonicParsing="false">
+                              <CheckBox fx:id="restaurantHotels2CheckBox" mnemonicParsing="false" onAction="#onRestaurantHotels2CheckBoxPressed">
                                  <HBox.margin>
                                     <Insets left="23.0" />
                                  </HBox.margin>
@@ -301,7 +301,7 @@
                                     <Insets left="35.0" />
                                  </HBox.margin>
                               </Label>
-                              <CheckBox mnemonicParsing="false">
+                              <CheckBox fx:id="clothesShoes2CheckBox" mnemonicParsing="false" onAction="#onClothesShoes2CheckBoxPressed">
                                  <HBox.margin>
                                     <Insets left="44.0" />
                                  </HBox.margin>
@@ -311,7 +311,7 @@
                                     <Insets left="35.0" />
                                  </HBox.margin>
                               </Label>
-                              <CheckBox mnemonicParsing="false">
+                              <CheckBox fx:id="leasureSportCulture2CheckBox" mnemonicParsing="false" onAction="#onLeasureSportCultureCheckBox2Pressed">
                                  <HBox.margin>
                                     <Insets left="20.0" />
                                  </HBox.margin>
@@ -321,7 +321,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="Income" />
-                              <CheckBox mnemonicParsing="false">
+                              <CheckBox mnemonicParsing="false" onAction="#onIncome2CheckBoxPressed">
                                  <HBox.margin>
                                     <Insets left="65.0" />
                                  </HBox.margin>
@@ -331,7 +331,7 @@
                                     <Insets left="35.0" />
                                  </HBox.margin>
                               </Label>
-                              <CheckBox mnemonicParsing="false">
+                              <CheckBox mnemonicParsing="false" onAction="#onFixedExpenditures2CheckBoxPressed">
                                  <HBox.margin>
                                     <Insets left="26.0" />
                                  </HBox.margin>
@@ -341,7 +341,7 @@
                                     <Insets left="35.0" />
                                  </HBox.margin>
                               </Label>
-                              <CheckBox mnemonicParsing="false">
+                              <CheckBox mnemonicParsing="false" onAction="#onFluctExpenditures2CheckBoxPressed">
                                  <HBox.margin>
                                     <Insets left="20.0" />
                                  </HBox.margin>
@@ -351,7 +351,7 @@
                                     <Insets left="35.0" />
                                  </HBox.margin>
                               </Label>
-                              <CheckBox mnemonicParsing="false">
+                              <CheckBox mnemonicParsing="false" onAction="#onTotalExpenditures2CheckBoxPressed">
                                  <HBox.margin>
                                     <Insets left="42.0" />
                                  </HBox.margin>
@@ -388,8 +388,8 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="200.0" layoutY="630.0" prefHeight="25.0" prefWidth="400.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Update" />
-                        <Button mnemonicParsing="false" prefWidth="55.0" text="Exit">
+                        <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClearButtonPressed" prefWidth="55.0" text="Clear" />
+                        <Button mnemonicParsing="false" onAction="#onExitButtonPressed" prefWidth="55.0" text="Exit">
                            <HBox.margin>
                               <Insets left="150.0" />
                            </HBox.margin>
@@ -410,7 +410,7 @@
                                     <Insets left="100.0" />
                                  </HBox.margin>
                               </Label>
-                              <ComboBox prefWidth="50.0">
+                              <ComboBox fx:id="monthFromComboBox" onAction="#onMonthFromComboBox" prefWidth="70.0">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
@@ -420,7 +420,7 @@
                                     <Insets left="25.0" />
                                  </HBox.margin>
                               </Label>
-                              <ComboBox prefWidth="70.0">
+                              <ComboBox fx:id="yearFromComboBox" onAction="#onYearFromComboBox" prefWidth="70.0">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
@@ -451,7 +451,7 @@
                                     <Insets left="100.0" />
                                  </HBox.margin>
                               </Label>
-                              <ComboBox prefWidth="50.0">
+                              <ComboBox fx:id="monthToComboBox" onAction="#onMonthToComboBox" prefWidth="70.0">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
@@ -461,7 +461,7 @@
                                     <Insets left="25.0" />
                                  </HBox.margin>
                               </Label>
-                              <ComboBox prefWidth="70.0">
+                              <ComboBox fx:id="yearToComboBox" onAction="#onYearToComboBox" prefWidth="70.0">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
@@ -477,7 +477,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <PieChart layoutX="14.0" prefHeight="383.0" prefWidth="751.0" />
+                  <PieChart fx:id="pieChart" layoutX="14.0" prefHeight="383.0" prefWidth="751.0" />
                   <HBox layoutX="100.0" layoutY="380.0" prefHeight="25.0" prefWidth="180.0">
                      <children>
                         <Label prefWidth="50.0" text="absolute" />
@@ -501,7 +501,7 @@
                   <HBox alignment="CENTER_LEFT" layoutX="440.0" layoutY="380.0" prefHeight="25.0" prefWidth="250.0">
                      <children>
                         <Label text="Month:" />
-                        <ComboBox onAction="#onMonthComboBoxPressed" prefWidth="50.0">
+                        <ComboBox fx:id="month3ComboBox" onMouseClicked="#onMonth3ComboBoxPressed" prefWidth="50.0">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -511,7 +511,7 @@
                               <Insets left="25.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox onAction="#onYearComboBoxPressed" prefWidth="70.0">
+                        <ComboBox fx:id="year3ComboBox" onMouseClicked="#onYear3ComboBoxPressed" prefWidth="70.0">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -521,7 +521,7 @@
                   <HBox alignment="CENTER" layoutY="480.0" prefHeight="100.0" prefWidth="800.0">
                      <children>
                         <Label text="Show" />
-                        <ComboBox onAction="#onShowComboBoxPressed" prefWidth="150.0">
+                        <ComboBox fx:id="showComboBox" onMouseClicked="#onShowComboBoxPressed" prefWidth="150.0">
                            <HBox.margin>
                               <Insets left="35.0" />
                            </HBox.margin>
@@ -531,7 +531,7 @@
                               <Insets left="35.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox onAction="#onInComboBoxPressed" prefWidth="150.0">
+                        <ComboBox fx:id="inComboBox" onMouseClicked="#onInComboBoxPressed" prefWidth="150.0">
                            <HBox.margin>
                               <Insets left="35.0" />
                            </HBox.margin>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InflationTableController">
+   <children>
+      <TableView fx:id="inflationTableView" prefHeight="200.0" prefWidth="300.0">
+         <columns>
+            <TableColumn fx:id="yearColumn" prefWidth="95.0" text="Year" />
+            <TableColumn fx:id="inflationColumn" prefWidth="104.0" text="Inflation (%)" />
+            <TableColumn fx:id="deleteColumn" prefWidth="100.0" text="Delete" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

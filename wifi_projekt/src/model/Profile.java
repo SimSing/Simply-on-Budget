@@ -14,9 +14,9 @@ public class Profile {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
-	String accountName;
-	String password;
+	public long id;
+	public String accountName;
+	public String password;
 	
 	
 	public Profile(String accountName, String password) {

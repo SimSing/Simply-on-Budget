@@ -1,21 +1,18 @@
 package controller;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -23,8 +20,6 @@ import model.Profile;
 
 public class LoginController extends CommonPropertiesController {
 
-
-	
 	@FXML
 	private AnchorPane loginAnchorPane;
 
@@ -37,8 +32,8 @@ public class LoginController extends CommonPropertiesController {
 	@FXML
 	private TextField userTextField;
 
-	@FXML
-	private TextField passwordTextField;
+    @FXML
+    private PasswordField passwordField;
 
 	@FXML
 	private Button loginButton;
@@ -57,33 +52,49 @@ public class LoginController extends CommonPropertiesController {
 
 	@FXML
 	void onLoginButtonPressed(ActionEvent event) {
-		System.out.println(profileList.size());
-		
-		//hat nicht funktioniert wegen i==profileList.size(); bei i<profileList.size() funktionierts perfekt -> dass der java index eben mit 0 beginnt und nicht mit 1 is einfach unsympathisch ;)
-		for(int i=0; i<profileList.size(); i++)
-		{
-			Profile profile = profileList.get(i);
-			if (profile.getAccountName()==userTextField.getText() &&
-				(profile.getPassword() == passwordTextField.getText()));
-			{	
-								
-		Stage stageLogin = (Stage) loginButton.getScene().getWindow();
+		boolean loginSuccessful = false;
 
-		stageLogin.close();
-		loadScene("MainTable");
+		Alert alert = new Alert(AlertType.INFORMATION);
 		
-			}}
+		// für "alwaysOnTop"-Eigenschaft (in meiner loadScene-Methode im CommonPropertiesController)
+		alert.initOwner(loginButton.getScene().getWindow()); 
+		
+		alert.setTitle("Error");
+		alert.setContentText("Unknown Username or password.");
+
+		for (int i = 0; i < profileList.size(); i++) {
+			Profile profile = profileList.get(i);
+			if (profile.getAccountName().equals(userTextField.getText())
+					&& (profile.getPassword().equals(passwordField.getText()))) {
+				loginSuccessful = true;
+				loadScene("MainTable");
+				Stage stageLogin = (Stage) loginButton.getScene().getWindow();
+
+				stageLogin.hide();
+
+			}
+
+			}System.out.println(loginSuccessful);
+			if (loginSuccessful == false) {
+				alert.showAndWait();
+				System.out.println("test");
+
+		}
 
 	}
-    @FXML
-    void onNewProfileLabelHovered(MouseEvent event) {
-    	newProfileLabel.setCursor(Cursor.HAND);
 
-    }
+	@FXML
+	void onNewProfileLabelHovered(MouseEvent event) {
+		newProfileLabel.setCursor(Cursor.HAND);
+
+	}
+
 	@FXML
 	void onNewProfileLabelPressed(MouseEvent event) {
 
+		Stage stageLogin = (Stage) newProfileLabel.getScene().getWindow();
 
+		stageLogin.hide();
 
 		loadScene("CreateNewProfile");
 
@@ -94,7 +105,7 @@ public class LoginController extends CommonPropertiesController {
 		assert loginAnchorPane != null
 				: "fx:id=\"loginAnchorPane\" was not injected: check your FXML file 'Login.fxml'.";
 		assert userTextField != null : "fx:id=\"userTextField\" was not injected: check your FXML file 'Login.fxml'.";
-		assert passwordTextField != null
+		assert passwordField != null
 				: "fx:id=\"passwordTextField\" was not injected: check your FXML file 'Login.fxml'.";
 		assert loginButton != null : "fx:id=\"loginButton\" was not injected: check your FXML file 'Login.fxml'.";
 		assert newProfileLabel != null
@@ -103,10 +114,8 @@ public class LoginController extends CommonPropertiesController {
 
 		loginButton.disableProperty()
 				.bind(Bindings.createBooleanBinding(
-						() -> userTextField.getText().isEmpty() || passwordTextField.getText().isEmpty(),
-						userTextField.textProperty(), passwordTextField.textProperty()));
-		
-		
+						() -> userTextField.getText().isEmpty() || passwordField.getText().isEmpty(),
+						userTextField.textProperty(), passwordField.textProperty()));
 
 	}
 }

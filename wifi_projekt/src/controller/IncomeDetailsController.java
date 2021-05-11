@@ -52,28 +52,18 @@ public class IncomeDetailsController extends CommonPropertiesController {
 
 	@FXML
 	private Button saveButton;
+	
+    @FXML
+    private Button exitButton;
 
 	@FXML
-	Label negativeNumberLabel;
+	private Label negativeNumberLabel;
 
 	@FXML
-	Label confirmationLabel;
+	private Label confirmationLabel;
+	
 
-	void addIncomeToDataBase() {
-		CategoryInc categoryInc = categoryComboBox.getValue();
-		String amountString = amountTextField.getText();
-		double amount = Double.parseDouble(amountString);
-		LocalDate date = LocalDate.now();
-		String comment = commentTextField.getText();
 
-		if (!categoryInc.toString().isEmpty() && !amountString.isEmpty()) {
-			Income income = new Income(categoryInc, amount, date, comment);
-			System.out.println("Income added");
-			
-			incomeList.add(income);
-
-		}
-	}
 
 	@FXML
 	void onNoButtonPressed(ActionEvent event) {
@@ -101,7 +91,14 @@ public class IncomeDetailsController extends CommonPropertiesController {
 
 		}
 	}
+	
+	   @FXML
+	    void onExitButtonPressed(ActionEvent event) {
+		   
+		   exitButton.getScene().getWindow().hide();
 
+	    }
+	
 	@FXML
 	void limitInputinTextfield(KeyEvent event) {
 
@@ -163,6 +160,12 @@ public class IncomeDetailsController extends CommonPropertiesController {
 		assert commentTextField != null
 				: "fx:id=\"commentTextField\" was not injected: check your FXML file 'IncomeDetails.fxml'.";
 
+		
+		addButton.disableProperty()
+		.bind(commentTextField.textProperty().isEmpty().or(amountTextField.textProperty().isEmpty()));
+
+		
+		saveButton.setVisible(false);
 		categoryComboBox.getItems().setAll(CategoryInc.values());
 
 		negativeInputAnchorPane.setManaged(false);
@@ -186,7 +189,25 @@ public class IncomeDetailsController extends CommonPropertiesController {
 		
 		
 		
-	}private void clearIncomeInForm() {
+	}
+	
+	void addIncomeToDataBase() {
+		CategoryInc categoryInc = categoryComboBox.getValue();
+		String amountString = amountTextField.getText();
+		double amount = Double.parseDouble(amountString);
+		LocalDate date = LocalDate.now();
+		String comment = commentTextField.getText();
+
+		if (!categoryInc.toString().isEmpty() && !amountString.isEmpty()) {
+			Income income = new Income(categoryInc, amount, date, comment);
+			System.out.println("Income added");
+			
+			incomeList.add(income);
+
+		}
+	}
+	
+	private void clearIncomeInForm() {
 		commentTextField.clear();
 		categoryComboBox.getSelectionModel().clearSelection();
 		amountTextField.clear();
@@ -198,5 +219,8 @@ public class IncomeDetailsController extends CommonPropertiesController {
 		Double amountIncDouble = (income.getAmountInc());
 		String amountIncString = amountIncDouble.toString();
 		amountTextField.setText(amountIncString);
+		
+		saveButton.setVisible(true);
+		addButton.setVisible(false);
 	}
 }

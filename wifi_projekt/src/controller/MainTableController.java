@@ -201,6 +201,7 @@ public class MainTableController extends CommonPropertiesController {
 	void onInflationButtonPressed(ActionEvent event) {
 
 		loadScene("Inflation");
+		
 
 	}
 
@@ -242,6 +243,7 @@ public class MainTableController extends CommonPropertiesController {
 		saveButton.setVisible(false);
 
 		categoryComboBox.getItems().setAll(Category.values());
+		categoryComboBox.getItems().remove(Category.ALL);
 
 		selectedFluctExpendituresProperty.addListener(new ChangeListener<FluctExpenditures>() {
 

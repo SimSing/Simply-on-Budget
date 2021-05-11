@@ -75,6 +75,25 @@ public class FluctExpendituresRepositoryJPA implements FluctExpendituresReposito
 		return fluctExpendituresList;
 	}
 
+//	@Override
+//	public List<FluctExpenditures> readDatePriceCategories() {
+//
+//		List<FluctExpenditures> fluctExpendituresList = new ArrayList<>();
+//		EntityTransaction et = em.getTransaction();
+//		
+//		et.begin();
+//		TypedQuery<FluctExpenditures> query = em.createNamedQuery("readDatePriceCategories", FluctExpenditures.class);
+//		fluctExpendituresList = query.getResultList();
+//		et.commit();
+//		
+//		System.err.println("All FluctExpenditures:" + "\n");
+//		fluctExpendituresList.forEach(t -> System.err.println(t));
+//		
+//		return fluctExpendituresList;
+//	}
+
+	
+	
 	@Override
 	public void delete(FluctExpenditures fluctExpenditures) {
 

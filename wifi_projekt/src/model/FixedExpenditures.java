@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,10 +16,10 @@ public class FixedExpenditures {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	private String category;
-	private Double amount;
-	private LocalDate dateFixedExpenditures = LocalDate.now();
+	public long id;
+	public String category;
+	public Double amount;
+	public LocalDate dateFixedExpenditures = LocalDate.now();
 	
 	
 	public FixedExpenditures(String category, double amount, LocalDate dateFixedExpenditures) {
@@ -56,11 +57,11 @@ public class FixedExpenditures {
 		this.amount = amount;
 	}
 
-	public LocalDate getDate() {
+	public LocalDate getDateFixedExpenditures() {
 		return dateFixedExpenditures;
 	}
 
-	public void setDate(LocalDate dateFixedExpenditures) {
+	public void setDateFixedExpenditure(LocalDate dateFixedExpenditures) {
 		this.dateFixedExpenditures = dateFixedExpenditures;
 	}
 
@@ -69,6 +70,7 @@ public class FixedExpenditures {
 		return "FixedExpenditures [id=" + id + ", category=" + category + ", amount=" + amount + ", date=" + dateFixedExpenditures + "]";
 	}
 	
-	
+
+
 
 }
