@@ -6,18 +6,16 @@ import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.FixedExpenditures;
-import model.FluctExpenditures;
+import model.Profile;
 import javafx.scene.control.Label;
 
 public class ExpenditureDetailsController extends CommonPropertiesController {
@@ -113,7 +111,10 @@ public class ExpenditureDetailsController extends CommonPropertiesController {
 		}else {
 			addFixedExpenditureToDataBase();
 		}
+		
+		
 	}
+	
 
 	@FXML
 	void onExitButtonPressed(ActionEvent event) {
@@ -178,9 +179,10 @@ public class ExpenditureDetailsController extends CommonPropertiesController {
 		String amountString = amountTextField.getText();
 		double amount = Double.parseDouble(amountString);
 		LocalDate date = LocalDate.now();
+		Profile profile=profileList.get(loginId -1);
 
 		if (!categoryFixedExp.isEmpty() && !amountString.isEmpty()) {
-			FixedExpenditures fixedExpenditure = new FixedExpenditures(categoryFixedExp, amount, date);
+			FixedExpenditures fixedExpenditure = new FixedExpenditures(categoryFixedExp, amount, date, profile);
 			System.out.println("Fixed Expenditure added");
 			fixedExpendituresList.add(fixedExpenditure);
 		}

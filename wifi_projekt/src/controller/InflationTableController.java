@@ -1,11 +1,7 @@
 package controller;
 
 import java.net.URL;
-import java.time.Year;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -49,8 +45,7 @@ public class InflationTableController extends CommonPropertiesController {
 		assert deleteColumn != null
 				: "fx:id=\"deleteColumn\" was not injected: check your FXML file 'InflationTable.fxml'.";
 
-		List<Year> inflationYearsList = (inflationList.stream().map(f -> f.getInflationYear())
-				.collect(Collectors.toList()));
+
 
 		yearColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getInflationYear().toString()));
 		inflationColumn.setCellValueFactory(data -> new SimpleDoubleProperty(data.getValue().getInflationFigure()));

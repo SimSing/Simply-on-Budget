@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -25,7 +26,7 @@
                         <TableColumn fx:id="delete1Column" prefWidth="70.0" text="Delete" />
                     </columns>
                   </TableView>
-                  <HBox alignment="CENTER" layoutX="120.0" layoutY="15.0" prefHeight="25.0" prefWidth="320.0">
+                  <HBox alignment="CENTER" layoutX="140.0" layoutY="15.0" prefHeight="25.0" prefWidth="300.0">
                      <children>
                         <Label text="Month:" />
                         <ComboBox fx:id="monthComboBox1" onAction="#onCategoryComboBox1Pressed">
@@ -45,8 +46,10 @@
                         </ComboBox>
                      </children>
                   </HBox>
-                  <ComboBox fx:id="categoryComboBox1" layoutY="15.0" onAction="#onCategoryComboBox1Pressed" prefHeight="25.0" prefWidth="100.0" promptText="Categories" />
-                  <Label fx:id="sumFluctExpendituresLabel" layoutX="137.0" layoutY="437.0" prefHeight="32.0" prefWidth="60.0" style="-fx-border-color: DARKSLATEGREY; -fx-background-color: LIGHTGRAY; -fx-border-width: 1;" text="=" />
+                  <ComboBox fx:id="categoryComboBox1" layoutX="10.0" layoutY="15.0" onAction="#onCategoryComboBox1Pressed" prefHeight="25.0" prefWidth="120.0" promptText="Categories" />
+                  <Label fx:id="sumFluctExpendituresLabel" layoutX="137.0" layoutY="433.0" prefHeight="38.0" prefWidth="80.0" style="-fx-border-color: DARKSLATEGREY; -fx-background-color: LIGHTGRAY; -fx-border-width: 2;" />
+                  <CheckBox fx:id="inflationCheckBox" layoutX="411.0" layoutY="444.0" mnemonicParsing="false" onAction="#onInflationCheckBoxPressed" />
+                  <Label layoutX="296.0" layoutY="444.0" text="Adjust for Inflation" />
                </children>
             </AnchorPane>
       </content>
@@ -63,7 +66,8 @@
                         <TableColumn fx:id="delete2Column" prefWidth="70.0" text="Delete" />
                      </columns>
                   </TableView>
-                  <HBox alignment="CENTER" layoutX="120.0" layoutY="15.0" prefHeight="25.0" prefWidth="320.0">
+                  <Label layoutX="296.0" layoutY="444.0" text="Adjust for Inflation" />
+                  <HBox alignment="CENTER" layoutX="140.0" layoutY="15.0" prefHeight="25.0" prefWidth="300.0">
                      <children>
                         <Label text="Month:" />
                         <ComboBox fx:id="monthComboBox2" onAction="#onMonthComboBox2Pressed">
@@ -83,7 +87,8 @@
                         </ComboBox>
                      </children>
                   </HBox>
-                  <Label fx:id="sumFixedExpendituresLabel" layoutX="137.0" layoutY="437.0" prefHeight="32.0" prefWidth="60.0" style="-fx-border-color: DARKSLATEGREY; -fx-background-color: LIGHTGRAY; -fx-border-width: 1;" text="=" />
+                  <Label fx:id="sumFixedExpendituresLabel" layoutX="137.0" layoutY="433.0" prefHeight="38.0" prefWidth="80.0" style="-fx-border-color: DARKSLATEGREY; -fx-background-color: LIGHTGRAY; -fx-border-width: 2;" />
+                  <CheckBox fx:id="inflationCheckBox2" layoutX="411.0" layoutY="444.0" mnemonicParsing="false" onAction="#onInflationCheckBoxPressed" />
                </children>
             </AnchorPane>
          </content>
@@ -97,10 +102,11 @@
                         <TableColumn fx:id="category3Column" prefWidth="137.0" text="Category" />
                         <TableColumn fx:id="amount3Column" prefWidth="87.0" text="Amount" />
                         <TableColumn fx:id="date3Column" prefWidth="85.0" text="Date" />
+                        <TableColumn fx:id="comment3Column" prefWidth="75.0" text="Comment" />
                         <TableColumn fx:id="delete3Column" prefWidth="70.0" text="Delete" />
                      </columns>
                   </TableView>
-                  <HBox alignment="CENTER" layoutX="120.0" layoutY="15.0" prefHeight="25.0" prefWidth="320.0">
+                  <HBox alignment="CENTER" layoutX="140.0" layoutY="15.0" prefHeight="25.0" prefWidth="300.0">
                      <children>
                         <Label text="Month:" />
                         <ComboBox fx:id="monthComboBox3" onAction="#onCategoryComboBox3Pressed">
@@ -120,8 +126,10 @@
                         </ComboBox>
                      </children>
                   </HBox>
-                  <ComboBox fx:id="categoryComboBox3" layoutY="15.0" onAction="#onCategoryComboBox3Pressed" prefHeight="25.0" prefWidth="100.0" promptText="Categories" />
-                  <Label fx:id="sumIncomeLabel" layoutX="137.0" layoutY="437.0" prefHeight="32.0" prefWidth="60.0" style="-fx-border-color: DARKSLATEGREY; -fx-background-color: LIGHTGRAY; -fx-border-width: 1;" text="=" />
+                  <ComboBox fx:id="categoryComboBox3" layoutX="10.0" layoutY="15.0" onAction="#onCategoryComboBox3Pressed" prefHeight="25.0" prefWidth="120.0" promptText="Categories" />
+                  <Label fx:id="sumIncomeLabel" layoutX="137.0" layoutY="433.0" prefHeight="38.0" prefWidth="80.0" style="-fx-border-color: DARKSLATEGREY; -fx-background-color: LIGHTGRAY; -fx-border-width: 2;" />
+                  <Label layoutX="296.0" layoutY="444.0" text="Adjust for Inflation" />
+                  <CheckBox fx:id="inflationCheckBox3" layoutX="411.0" layoutY="444.0" mnemonicParsing="false" onAction="#onInflationCheckBoxPressed" />
                </children>
             </AnchorPane>
          </content>

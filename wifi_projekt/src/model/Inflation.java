@@ -2,8 +2,6 @@ package model;
 
 
 
-import java.time.Year;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,9 +18,9 @@ public class Inflation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long id;
 	public Double inflationFigure;
-	public Year inflationYear;
+	public Integer inflationYear;
 	
-	public Inflation(Year inflationYear, Double inflationFigure) {
+	public Inflation(Integer inflationYear, Double inflationFigure) {
 		super();
 		
 		this.inflationYear = inflationYear;
@@ -40,10 +38,10 @@ public class Inflation {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Year getInflationYear() {
+	public Integer getInflationYear() {
 		return inflationYear;
 	}
-	public void setInflationYear(Year inflationYear) {
+	public void setInflationYear(Integer inflationYear) {
 		this.inflationYear = inflationYear;
 	}
 	public Double getInflationFigure() {

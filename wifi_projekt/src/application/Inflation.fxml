@@ -5,12 +5,13 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="303.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InflationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="303.0" style="-fx-background-color: GAINSBORO;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InflationController">
    <children>
-      <HBox alignment="CENTER_LEFT" layoutX="5.0" layoutY="190.0" prefHeight="50.0" prefWidth="301.0">
+      <HBox alignment="CENTER_LEFT" layoutX="5.0" layoutY="210.0" prefHeight="50.0" prefWidth="301.0">
          <children>
             <Label text="Year:">
                <HBox.margin>
@@ -22,26 +23,26 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </ComboBox>
-            <TextField fx:id="inflationTextField" alignment="CENTER_RIGHT" prefWidth="50.0" promptText="\%">
+            <TextField fx:id="inflationTextField" alignment="CENTER_RIGHT" prefWidth="50.0" promptText="in %">
                <HBox.margin>
                   <Insets left="75.0" />
                </HBox.margin>
             </TextField>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" layoutY="230.0" prefHeight="50.0" prefWidth="300.0">
+      <HBox alignment="CENTER_LEFT" layoutY="270.0" prefHeight="50.0" prefWidth="300.0">
          <children>
-            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonPressed" prefWidth="50.0" text="Exit">
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonPressed" prefHeight="30.0" prefWidth="50.0" text="Exit">
                <HBox.margin>
                   <Insets left="37.5" />
                </HBox.margin>
             </Button>
-            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonPressed" prefWidth="50.0" text="Save">
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonPressed" prefHeight="30.0" prefWidth="50.0" text="Save">
                <HBox.margin>
                   <Insets left="37.5" />
                </HBox.margin>
             </Button>
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonPressed" prefWidth="50.0" text="Add">
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonPressed" prefHeight="30.0" prefWidth="50.0" text="Add">
                <HBox.margin>
                   <Insets left="37.5" />
                </HBox.margin>
@@ -54,4 +55,7 @@
          </children>
       </AnchorPane>
    </children>
+   <effect>
+      <Blend mode="MULTIPLY" />
+   </effect>
 </AnchorPane>

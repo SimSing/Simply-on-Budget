@@ -161,26 +161,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <HBox layoutX="100.0" layoutY="380.0" prefHeight="25.0" prefWidth="180.0">
-                     <children>
-                        <Label prefWidth="50.0" text="absolute" />
-                        <CheckBox fx:id="absoluteCheckBox" mnemonicParsing="false" onAction="#onAbsoluteCheckBoxPressed">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </CheckBox>
-                        <Label text="relative">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Label>
-                        <CheckBox fx:id="relativeCheckBox" mnemonicParsing="false" onAction="#onRelativeCheckBoxPressed">
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                        </CheckBox>
-                     </children>
-                  </HBox>
+                  <HBox layoutX="100.0" layoutY="380.0" prefHeight="25.0" prefWidth="180.0" />
                   <HBox layoutX="470.0" layoutY="380.0" prefHeight="25.0" prefWidth="300.0">
                      <children>
                         <Label text="Month" />
@@ -213,10 +194,9 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="200.0" layoutY="630.0" prefHeight="25.0" prefWidth="400.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Update" />
                         <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonPressed" prefWidth="55.0" text="Exit">
                            <HBox.margin>
-                              <Insets left="150.0" />
+                              <Insets />
                            </HBox.margin>
                         </Button>
                      </children>
@@ -366,26 +346,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <HBox layoutX="100.0" layoutY="380.0" prefHeight="25.0" prefWidth="180.0">
-                     <children>
-                        <Label prefWidth="50.0" text="absolute" />
-                        <CheckBox mnemonicParsing="false">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </CheckBox>
-                        <Label text="relative">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Label>
-                        <CheckBox mnemonicParsing="false">
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                        </CheckBox>
-                     </children>
-                  </HBox>
+                  <HBox layoutX="100.0" layoutY="380.0" prefHeight="25.0" prefWidth="180.0" />
                   <HBox alignment="CENTER" layoutX="200.0" layoutY="630.0" prefHeight="25.0" prefWidth="400.0">
                      <children>
                         <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClearButtonPressed" prefWidth="55.0" text="Clear" />
@@ -396,80 +357,69 @@
                         </Button>
                      </children>
                   </HBox>
-                  <VBox layoutX="360.0" layoutY="380.0" prefHeight="80.0" prefWidth="380.0">
+                  <HBox alignment="CENTER_LEFT" layoutX="40.0" layoutY="405.0" prefHeight="50.0" prefWidth="350.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label>
-                                 <font>
-                                    <Font name="System Bold Italic" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Month:">
-                                 <HBox.margin>
-                                    <Insets left="100.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <ComboBox fx:id="monthFromComboBox" onAction="#onMonthFromComboBox" prefWidth="70.0">
-                                 <HBox.margin>
-                                    <Insets left="15.0" />
-                                 </HBox.margin>
-                              </ComboBox>
-                              <Label text="Year:">
-                                 <HBox.margin>
-                                    <Insets left="25.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <ComboBox fx:id="yearFromComboBox" onAction="#onYearFromComboBox" prefWidth="70.0">
-                                 <HBox.margin>
-                                    <Insets left="15.0" />
-                                 </HBox.margin>
-                              </ComboBox>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Compare">
-                                 <font>
-                                    <Font name="System Bold Italic" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label text="to">
-                                 <HBox.margin>
-                                    <Insets left="155.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="System Bold Italic" size="13.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="Month:">
-                                 <HBox.margin>
-                                    <Insets left="100.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <ComboBox fx:id="monthToComboBox" onAction="#onMonthToComboBox" prefWidth="70.0">
-                                 <HBox.margin>
-                                    <Insets left="15.0" />
-                                 </HBox.margin>
-                              </ComboBox>
-                              <Label text="Year:">
-                                 <HBox.margin>
-                                    <Insets left="25.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <ComboBox fx:id="yearToComboBox" onAction="#onYearToComboBox" prefWidth="70.0">
-                                 <HBox.margin>
-                                    <Insets left="15.0" />
-                                 </HBox.margin>
-                              </ComboBox>
-                           </children>
-                        </HBox>
+                        <Label>
+                           <font>
+                              <Font name="System Bold Italic" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label prefWidth="45.0" text="Month:">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <ComboBox fx:id="monthFromComboBox" onAction="#onMonthFromComboBox" prefWidth="120.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ComboBox>
+                        <Label prefWidth="33.0" text="Year:">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ComboBox fx:id="yearFromComboBox" onAction="#onYearFromComboBox" prefWidth="70.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ComboBox>
                      </children>
-                  </VBox>
+                  </HBox>
+                  <Label layoutX="384.0" layoutY="421.0" text="to">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="358.0" layoutY="380.0" prefHeight="25.0" prefWidth="69.0" text="Compare">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" layoutX="476.0" layoutY="405.0" prefHeight="50.0" prefWidth="350.0">
+                     <children>
+                        <Label prefWidth="45.0" text="Month:">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <ComboBox fx:id="monthToComboBox" onAction="#onMonthToComboBox" prefWidth="100.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ComboBox>
+                        <Label prefWidth="33.0" text="Year:">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ComboBox fx:id="yearToComboBox" onAction="#onYearToComboBox" prefWidth="70.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ComboBox>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
          </content></Tab>
@@ -478,30 +428,10 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <PieChart fx:id="pieChart" layoutX="14.0" prefHeight="383.0" prefWidth="751.0" />
-                  <HBox layoutX="100.0" layoutY="380.0" prefHeight="25.0" prefWidth="180.0">
-                     <children>
-                        <Label prefWidth="50.0" text="absolute" />
-                        <CheckBox mnemonicParsing="false" onAction="#onAbsoluteCheckBoxPressed">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </CheckBox>
-                        <Label text="relative">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Label>
-                        <CheckBox mnemonicParsing="false" onAction="#onRelativeCheckBoxPressed">
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                        </CheckBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="440.0" layoutY="380.0" prefHeight="25.0" prefWidth="250.0">
+                  <HBox alignment="CENTER_LEFT" layoutX="265.0" layoutY="415.0">
                      <children>
                         <Label text="Month:" />
-                        <ComboBox fx:id="month3ComboBox" onMouseClicked="#onMonth3ComboBoxPressed" prefWidth="50.0">
+                        <ComboBox fx:id="month3ComboBox" onMouseClicked="#onMonth3ComboBoxPressed">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -521,7 +451,7 @@
                   <HBox alignment="CENTER" layoutY="480.0" prefHeight="100.0" prefWidth="800.0">
                      <children>
                         <Label text="Show" />
-                        <ComboBox fx:id="showComboBox" onMouseClicked="#onShowComboBoxPressed" prefWidth="150.0">
+                        <ComboBox fx:id="showComboBox" onMouseClicked="#onShowComboBoxPressed" prefWidth="170.0">
                            <HBox.margin>
                               <Insets left="35.0" />
                            </HBox.margin>
@@ -531,7 +461,7 @@
                               <Insets left="35.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox fx:id="inComboBox" onMouseClicked="#onInComboBoxPressed" prefWidth="150.0">
+                        <ComboBox fx:id="inComboBox" onMouseClicked="#onInComboBoxPressed" prefWidth="170.0">
                            <HBox.margin>
                               <Insets left="35.0" />
                            </HBox.margin>
@@ -548,6 +478,18 @@
                         </Button>
                      </children>
                   </HBox>
+                  <Label fx:id="showLabel" layoutX="600.0" layoutY="29.0" />
+                  <Label fx:id="titleLabel" layoutX="31.0" layoutY="36.0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="title2Label" layoutX="31.0" layoutY="153.0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="toLabel" layoutX="80.0" layoutY="96.0" />
                </children>
             </AnchorPane>
         </content>

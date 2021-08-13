@@ -9,17 +9,48 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.IncomeDetailsController">
+<AnchorPane style="-fx-background-color: GAINSBORO;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.IncomeDetailsController">
    <children>
-      <AnchorPane fx:id="incomeDetailsAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0">
+      <AnchorPane fx:id="incomeDetailsAnchorPane" blendMode="MULTIPLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: GAINSBORO;">
          <children>
-            <ComboBox fx:id="categoryComboBox" layoutX="14.0" layoutY="38.0" prefHeight="25.0" prefWidth="112.0" promptText="Category:" />
-            <TextField fx:id="amountTextField" layoutX="191.0" layoutY="38.0" prefHeight="25.0" prefWidth="73.0" />
-            <Label layoutX="21.0" layoutY="100.0" prefHeight="30.0" prefWidth="67.0" text="Comment:" AnchorPane.leftAnchor="21.0" />
-            <TextField fx:id="commentTextField" layoutX="191.0" layoutY="103.0" prefHeight="25.0" prefWidth="73.0" />
+            <ComboBox fx:id="categoryComboBox" layoutX="94.0" layoutY="22.0" prefHeight="40.0" prefWidth="140.0" promptText="Category:" />
+            <TextField fx:id="amountTextField" layoutX="191.0" layoutY="107.0" prefHeight="25.0" prefWidth="73.0" />
+            <Label layoutX="24.0" layoutY="150.0" prefHeight="30.0" prefWidth="67.0" text="Comment:" AnchorPane.leftAnchor="24.0">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font></Label>
+            <TextField fx:id="commentTextField" layoutX="191.0" layoutY="153.0" prefHeight="25.0" prefWidth="73.0" />
+            <HBox alignment="CENTER" layoutY="236.0" prefHeight="50.0" prefWidth="300.0">
+               <children>
+                  <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonPressed" prefHeight="40.0" prefWidth="50.0" text="Exit">
+                     <HBox.margin>
+                        <Insets right="42.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonPressed" prefHeight="40.0" prefWidth="50.0" text="Save">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonPressed" prefHeight="40.0" prefWidth="50.0" text="Add">
+                     <HBox.margin>
+                        <Insets left="42.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <Label layoutX="24.0" layoutY="107.0" prefHeight="30.0" prefWidth="67.0" text="Amount:">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font></Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="negativeInputAnchorPane" prefHeight="200.0" prefWidth="300.0" style="visibility: false;">
+      <AnchorPane fx:id="negativeInputAnchorPane" prefHeight="200.0" prefWidth="300.0" style="visibility: false; -fx-background-color: GAINSBORO;">
          <children>
             <HBox prefHeight="54.0" prefWidth="300.0">
                <children>
@@ -39,20 +70,5 @@
             <Button fx:id="noButton" layoutX="184.0" layoutY="108.0" mnemonicParsing="false" onAction="#onNoButtonPressed" prefWidth="50.0" text="No" />
          </children>
       </AnchorPane>
-      <HBox alignment="CENTER" layoutY="150.0" prefHeight="50.0" prefWidth="300.0">
-         <children>
-            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonPressed" prefWidth="50.0" text="Exit">
-               <HBox.margin>
-                  <Insets right="42.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonPressed" prefWidth="50.0" text="Save" />
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonPressed" prefWidth="50.0" text="Add">
-               <HBox.margin>
-                  <Insets left="42.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
    </children>
 </AnchorPane>

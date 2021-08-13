@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -7,33 +8,35 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.stream.Stream;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import model.FluctExpenditures;
 import model.FluctExpenditures.Category;
+import model.Profile;
 
 public class MainTableController extends CommonPropertiesController {
-
+	
+	String style_inner = "-fx-border-color: black;"
+            + "-fx-border-width: 1;"
+            + "-fx-border-style: dotted;";
+	
 	@FXML
 	private ImageView billImageView;
-
+	
+    @FXML
+    private HBox hBoxImageView;
+	
 	@FXML
 	private TextField billPathTextField;
 
@@ -84,6 +87,27 @@ public class MainTableController extends CommonPropertiesController {
 
 	@FXML
 	private Button clearButton;
+	
+    @FXML
+    void onBillImageViewPressed(MouseEvent event) {
+    	try  
+    	{  
+    	File file = new File(billPathTextField.getText());
+    	
+    	if(!Desktop.isDesktopSupported())
+    	{  
+    	System.out.println("not supported");  
+    	return;  
+    	}  
+    	Desktop desktop = Desktop.getDesktop();  
+    	if(file.exists())         
+    	desktop.open(file);             
+    	}  
+    	catch(Exception e)  
+    	{  
+    	e.printStackTrace();  
+    	} 
+    }
 
 	@FXML
 	void onAddButtonPressed(ActionEvent event) {
@@ -94,21 +118,24 @@ public class MainTableController extends CommonPropertiesController {
 		LocalDate date = datePicker.getValue();
 		String comment = commentTextField.getText();
 		String path = billPathTextField.getText();
+		Profile profile = profileList.get(loginId - 1);
+
 		System.out.println(category.toString() + " " + priceString + " " + date + " " + comment);
 		if (!category.toString().isEmpty() && !priceString.isEmpty() && date != null && !comment.isEmpty()) {
-			FluctExpenditures fluctExpenditures = new FluctExpenditures(category, price, date, comment, path);
+			FluctExpenditures fluctExpenditures = new FluctExpenditures(category, price, date, comment, path, profile);
 			System.out.println("Object added");
 
 			fluctExpendituresList.add(fluctExpenditures);
-			
-			System.out.println(fluctExpendituresList);
+			// reInitialiseLists();
 
-		}
+//			Node node = 
+//			node.getScene().getWindow().setOnHiding((event2) -> System.out.println("Window close"));
+		} // updateAllLists();
 	}
 
 	@FXML
 	void onClearButtonPressed(ActionEvent event) {
-		
+
 		clearFluctExpendituresInForm();
 		addButton.setVisible(true);
 		saveButton.setVisible(false);
@@ -136,7 +163,8 @@ public class MainTableController extends CommonPropertiesController {
 		fluctExpendituresList.set(index, fluctExpenditures);
 
 		clearFluctExpendituresInForm();
-
+		addButton.setVisible(true);
+		saveButton.setVisible(false);
 	}
 
 	@FXML
@@ -201,7 +229,6 @@ public class MainTableController extends CommonPropertiesController {
 	void onInflationButtonPressed(ActionEvent event) {
 
 		loadScene("Inflation");
-		
 
 	}
 
@@ -237,9 +264,9 @@ public class MainTableController extends CommonPropertiesController {
 		assert billImageView != null
 				: "fx:id=\"billImageView\" was not injected: check your FXML file 'MainTable.fxml'.";
 		assert saveButton != null : "fx:id=\"saveButton\" was not injected: check your FXML file 'MainTable.fxml'.";
-        assert clearButton != null : "fx:id=\"clearButton\" was not injected: check your FXML file 'MainTable.fxml'.";
+		assert clearButton != null : "fx:id=\"clearButton\" was not injected: check your FXML file 'MainTable.fxml'.";
 
-
+		hBoxImageView.setStyle(style_inner);
 		saveButton.setVisible(false);
 
 		categoryComboBox.getItems().setAll(Category.values());
@@ -269,6 +296,7 @@ public class MainTableController extends CommonPropertiesController {
 		datePicker.getEditor().clear();
 		categoryComboBox.getSelectionModel().clearSelection();
 		billPathTextField.clear();
+		billImageView.setImage(null);
 	}
 
 	private void updateFluctExpendituresInForm(FluctExpenditures fluctExpenditures) {

@@ -3,7 +3,7 @@ package repository;
 import java.util.List;
 import java.util.Optional;
 
-import model.FixedExpenditures;
+
 import model.Profile;
 
 public interface ProfileRepository {

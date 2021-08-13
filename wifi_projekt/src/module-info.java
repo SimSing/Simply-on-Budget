@@ -6,13 +6,18 @@ module wifi_projekt {
 	exports repository;
 
 	requires jakarta.persistence;
-	requires java.sql;
+	requires java.desktop;
 	requires javafx.base;
 	requires javafx.controls;
 	requires javafx.fxml;
 	requires javafx.graphics;
-	
+//	requires org.junit.jupiter.api;
 	opens model to eclipselink;
 	opens controller to javafx.fxml;
 	opens application to javafx.graphics, javafx.fxml;
-	}
+
+
+
+		
+
+}

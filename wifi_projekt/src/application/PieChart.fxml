@@ -33,7 +33,7 @@
       <HBox alignment="CENTER_LEFT" layoutX="440.0" layoutY="3.0" prefHeight="25.0" prefWidth="250.0">
          <children>
             <Label text="Month:" />
-            <ComboBox fx:id="monthComboBox" onAction="#onMonthComboBoxPressed" prefWidth="50.0">
+
                <HBox.margin>
                   <Insets left="15.0" />
                </HBox.margin>
@@ -43,7 +43,7 @@
                   <Insets left="25.0" />
                </HBox.margin>
             </Label>
-            <ComboBox fx:id="yearComboBox" onAction="#onYearComboBoxPressed" prefWidth="70.0">
+
                <HBox.margin>
                   <Insets left="15.0" />
                </HBox.margin>

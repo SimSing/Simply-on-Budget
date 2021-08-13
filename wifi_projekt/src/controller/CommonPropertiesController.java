@@ -1,9 +1,9 @@
 package controller;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -12,6 +12,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -34,6 +35,12 @@ import repository.ProfileRepositoryJPA;
 
 public class CommonPropertiesController {
 
+	
+    public static String loginName;
+	static String loginPassword;
+    public static Integer loginId;
+
+	
 	static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
 	static ObjectProperty<FluctExpenditures> selectedFluctExpendituresProperty = new SimpleObjectProperty<FluctExpenditures>();
@@ -44,13 +51,18 @@ public class CommonPropertiesController {
 	
 
 	static FluctExpendituresRepository fluctExpendituresRepository = new FluctExpendituresRepositoryJPA();
-	static ObservableList<FluctExpenditures> fluctExpendituresList = FXCollections
+	static ObservableList<FluctExpenditures> fluctExpendituresList =FXCollections
 			.observableArrayList(fluctExpendituresRepository.readAll());
-
+	
+	
+	
 	static ObservableList<Integer> dateList = FXCollections
-			.observableArrayList(fluctExpendituresList.stream().map(f -> f.getDate().getYear()).distinct().collect(Collectors.toList()));
+			.observableArrayList(fluctExpendituresList.stream().map(f -> f.getDate().getYear()).distinct().sorted().collect(Collectors.toList()));
 	static ObservableList<Double> priceList = FXCollections
 			.observableArrayList(fluctExpendituresList.stream().map(f -> f.getPrice()).collect(Collectors.toList()));
+	
+	static ObservableList<Integer> inflationDateList = FXCollections
+			.observableArrayList(fluctExpendituresList.stream().map(f -> f.getDate().getYear()).distinct().collect(Collectors.toList()));
 	
 	static List<Object> datePriceList = Stream.concat(dateList.stream(), priceList.stream()).collect(Collectors.toList());
 	
@@ -67,9 +79,31 @@ public class CommonPropertiesController {
 	static InflationRepository inflationRepository = new InflationRepositoryJPA();
 	static ObservableList<Inflation> inflationList = FXCollections.observableArrayList(inflationRepository.readAll());
 	static ObservableList<Integer> inflationYearList = FXCollections
-			.observableArrayList(inflationList.stream().map(f -> f.getInflationYear().getValue()).collect(Collectors.toList()));
+			.observableArrayList(inflationList.stream().map(f -> f.getInflationYear()).collect(Collectors.toList()));
+	
+	static FilteredList<FluctExpenditures> filteredFluctExpendituresList = new FilteredList<>(fluctExpendituresList);
+	static FilteredList<FixedExpenditures> filteredFixedExpendituresList = new FilteredList<>(fixedExpendituresList);
+	static FilteredList<Income> filteredIncomeList = new FilteredList<>(incomeList);
+	
+	
+	
 
 	
+	static void reInitialiseLists(){
+		Predicate<FluctExpenditures> accFluctPredicate = (f->f.getProfile().getAccountName().equals(loginName));
+		Predicate<FixedExpenditures> accFixedPredicate = (f->f.getProfile().getAccountName().equals(loginName));
+		Predicate<Income> accIncPredicate = (f->f.getProfile().getAccountName().equals(loginName));
+		//fluctExpendituresList.filtered(accFluctPredicate);
+		fluctExpendituresList.sort((o1, o2)->o1.getDate().compareTo(o2.getDate()));
+		filteredFluctExpendituresList.setPredicate(accFluctPredicate);
+		filteredFixedExpendituresList.setPredicate(accFixedPredicate);
+		filteredIncomeList.setPredicate(accIncPredicate);
+
+		
+
+
+		
+	}
 	
 	static {
 		fluctExpendituresList.addListener(new ListChangeListener<FluctExpenditures>() {
@@ -221,7 +255,7 @@ public class CommonPropertiesController {
 	}
 
 
-	public final void loadScene(String stageName) {
+	public final void loadCssScene(String stageName) {
 
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/application/" + stageName + ".fxml"));
@@ -230,6 +264,7 @@ public class CommonPropertiesController {
 			Parent root = loader.load();
 			Stage stage = new Stage();
 			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("/css/" + stageName + ".css").toExternalForm());
 			stage.setScene(scene);
 			stage.setAlwaysOnTop(true);
 			stage.showAndWait();
@@ -239,7 +274,21 @@ public class CommonPropertiesController {
 
 	}
 
+public final void loadScene(String stageName) {
+	FXMLLoader loader = new FXMLLoader();
+	loader.setLocation(getClass().getResource("/application/" + stageName + ".fxml"));
 
+	try {
+		Parent root = loader.load();
+		Stage stage = new Stage();
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.setAlwaysOnTop(true);
+		stage.showAndWait();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+}
 
 
 }

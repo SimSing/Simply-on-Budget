@@ -4,41 +4,48 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="170.0" minWidth="300.0" prefHeight="170.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExpenditureDetailsController">
+<AnchorPane minHeight="170.0" minWidth="300.0" prefHeight="220.0" prefWidth="300.0" style="-fx-background-color: GAINSBORO;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExpenditureDetailsController">
    <children>
-      <AnchorPane fx:id="expenditureDetailsAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="300.0">
+      <AnchorPane fx:id="expenditureDetailsAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="300.0" style="-fx-background-color: GAINSBORO;">
          <children>
             <VBox layoutY="27.0" prefHeight="120.0" prefWidth="300.0">
                <children>
-                  <HBox prefHeight="80.0" prefWidth="300.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="300.0">
                      <children>
-                        <Label text="Category:">
+                        <Label text="Amount">
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
                         </Label>
-                        <TextField fx:id="categoryTextField" prefHeight="25.0" prefWidth="80.0">
+                        <TextField fx:id="amountTextField" onKeyTyped="#limitInputinTextfield" prefHeight="25.0" prefWidth="95.0">
                            <HBox.margin>
-                              <Insets left="80.0" />
+                              <Insets left="85.0" />
                            </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="300.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="300.0">
                      <children>
-                        <Label text="Amount:">
+                        <Label text="Category">
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
                         </Label>
-                        <TextField fx:id="amountTextField" onKeyTyped="#limitInputinTextfield" prefWidth="80.0">
+                        <TextField fx:id="categoryTextField" prefHeight="25.0" prefWidth="95.0" promptText="Rent/Insurance...">
                            <HBox.margin>
-                              <Insets left="85.0" />
+                              <Insets left="80.0" />
                            </HBox.margin>
                         </TextField>
                      </children>
@@ -46,23 +53,35 @@
                </children>
             </VBox>
             <HBox alignment="CENTER" layoutY="350.0" prefHeight="50.0" prefWidth="282.0" />
-            <HBox alignment="CENTER" layoutY="120.0" prefHeight="50.0" prefWidth="300.0">
+            <HBox alignment="CENTER" layoutY="161.0" prefHeight="50.0" prefWidth="300.0">
                <children>
-                  <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonPressed" prefWidth="50.0" text="Exit">
+                  <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonPressed" prefHeight="40.0" prefWidth="50.0" text="Exit">
                      <HBox.margin>
                         <Insets right="42.0" />
-                     </HBox.margin></Button>
-                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonPressed" prefWidth="50.0" text="Save" />
-                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonPressed" prefWidth="50.0" text="Add">
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonPressed" prefHeight="40.0" prefWidth="50.0" text="Save">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonPressed" prefHeight="40.0" prefWidth="50.0" text="Add">
                      <HBox.margin>
                         <Insets left="42.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
                   </Button>
                </children>
             </HBox>
          </children>
+         <effect>
+            <Blend />
+         </effect>
       </AnchorPane>
-      <AnchorPane fx:id="negativeInputAnchorPane" prefHeight="170.0" prefWidth="300.0" style="visibility: false;">
+      <AnchorPane fx:id="negativeInputAnchorPane" prefHeight="170.0" prefWidth="300.0" style="visibility: false; -fx-background-color: GAINSBORO;">
          <children>
             <HBox prefHeight="54.0" prefWidth="300.0">
                <children>
@@ -83,4 +102,7 @@
          </children>
       </AnchorPane>
    </children>
+   <effect>
+      <Blend mode="MULTIPLY" />
+   </effect>
 </AnchorPane>

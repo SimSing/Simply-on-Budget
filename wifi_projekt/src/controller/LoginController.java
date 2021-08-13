@@ -6,14 +6,12 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Profile;
@@ -32,14 +30,14 @@ public class LoginController extends CommonPropertiesController {
 	@FXML
 	private TextField userTextField;
 
-    @FXML
-    private PasswordField passwordField;
+	@FXML
+	private PasswordField passwordField;
 
 	@FXML
 	private Button loginButton;
 
-	@FXML
-	private Label newProfileLabel;
+    @FXML
+    private Button createAccountButton;
 
 	@FXML
 	private Button exitButton;
@@ -50,15 +48,17 @@ public class LoginController extends CommonPropertiesController {
 
 	}
 
+
 	@FXML
 	void onLoginButtonPressed(ActionEvent event) {
 		boolean loginSuccessful = false;
 
 		Alert alert = new Alert(AlertType.INFORMATION);
-		
-		// für "alwaysOnTop"-Eigenschaft (in meiner loadScene-Methode im CommonPropertiesController)
-		alert.initOwner(loginButton.getScene().getWindow()); 
-		
+
+		// für "alwaysOnTop"-Eigenschaft (in meiner loadScene-Methode im
+		// CommonPropertiesController)
+		alert.initOwner(loginButton.getScene().getWindow());
+
 		alert.setTitle("Error");
 		alert.setContentText("Unknown Username or password.");
 
@@ -67,36 +67,82 @@ public class LoginController extends CommonPropertiesController {
 			if (profile.getAccountName().equals(userTextField.getText())
 					&& (profile.getPassword().equals(passwordField.getText()))) {
 				loginSuccessful = true;
-				loadScene("MainTable");
+				loginName = userTextField.getText();
+				loginPassword = passwordField.getText();
+				loginId = i + 1;
+				System.out.println(loginName);
+				reInitialiseLists();
+				
 				Stage stageLogin = (Stage) loginButton.getScene().getWindow();
 
 				stageLogin.hide();
+				loadScene("MainTable");
 
 			}
 
-			}System.out.println(loginSuccessful);
-			if (loginSuccessful == false) {
-				alert.showAndWait();
-				System.out.println("test");
+		}
+		System.out.println(loginSuccessful);
+		if (loginSuccessful == false) {
+			alert.showAndWait();
+			System.out.println("test");
 
 		}
 
 	}
 
-	@FXML
-	void onNewProfileLabelHovered(MouseEvent event) {
-		newProfileLabel.setCursor(Cursor.HAND);
 
-	}
+    @FXML
+    void onKeyPressed(KeyEvent event) {
+    	if(event.getCode().toString().equals("ENTER"))
+    	{
+    		boolean loginSuccessful = false;
 
-	@FXML
-	void onNewProfileLabelPressed(MouseEvent event) {
+    		Alert alert = new Alert(AlertType.INFORMATION);
 
-		Stage stageLogin = (Stage) newProfileLabel.getScene().getWindow();
+    		// für "alwaysOnTop"-Eigenschaft (in meiner loadScene-Methode im
+    		// CommonPropertiesController)
+    		alert.initOwner(loginButton.getScene().getWindow());
 
-		stageLogin.hide();
+    		alert.setTitle("Error");
+    		alert.setContentText("Unknown Username or password.");
 
-		loadScene("CreateNewProfile");
+    		for (int i = 0; i < profileList.size(); i++) {
+    			Profile profile = profileList.get(i);
+    			if (profile.getAccountName().equals(userTextField.getText())
+    					&& (profile.getPassword().equals(passwordField.getText()))) {
+    				loginSuccessful = true;
+    				loginName = userTextField.getText();
+    				loginPassword = passwordField.getText();
+    				loginId = i + 1;
+    				System.out.println(loginName);
+    				reInitialiseLists();
+    				
+    				Stage stageLogin = (Stage) loginButton.getScene().getWindow();
+
+    				stageLogin.hide();
+    				loadScene("MainTable");
+
+    			}
+
+    		}
+    		System.out.println(loginSuccessful);
+    		if (loginSuccessful == false) {
+    			alert.showAndWait();
+    			System.out.println("test");
+
+    		}
+    		
+    	}
+    }
+
+    @FXML
+    void onCreateAccountButtonPressed(ActionEvent event) {
+
+//		Stage stageLogin = (Stage) newProfileLabel.getScene().getWindow();
+//
+//		stageLogin.hide();
+
+		loadCssScene("CreateNewProfile");
 
 	}
 
@@ -108,14 +154,15 @@ public class LoginController extends CommonPropertiesController {
 		assert passwordField != null
 				: "fx:id=\"passwordTextField\" was not injected: check your FXML file 'Login.fxml'.";
 		assert loginButton != null : "fx:id=\"loginButton\" was not injected: check your FXML file 'Login.fxml'.";
-		assert newProfileLabel != null
-				: "fx:id=\"newProfileLabel\" was not injected: check your FXML file 'Login.fxml'.";
+		
 		assert exitButton != null : "fx:id=\"exitButton\" was not injected: check your FXML file 'Login.fxml'.";
 
+	
 		loginButton.disableProperty()
 				.bind(Bindings.createBooleanBinding(
 						() -> userTextField.getText().isEmpty() || passwordField.getText().isEmpty(),
 						userTextField.textProperty(), passwordField.textProperty()));
 
+		System.out.println(profileList);
 	}
 }

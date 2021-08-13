@@ -1,9 +1,9 @@
 package controller;
 
+
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -16,6 +16,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Income;
+import model.Profile;
 import model.Income.CategoryInc;
 
 public class IncomeDetailsController extends CommonPropertiesController {
@@ -88,7 +89,7 @@ public class IncomeDetailsController extends CommonPropertiesController {
 
 		} else {
 			addIncomeToDataBase();
-
+			
 		}
 	}
 	
@@ -197,9 +198,10 @@ public class IncomeDetailsController extends CommonPropertiesController {
 		double amount = Double.parseDouble(amountString);
 		LocalDate date = LocalDate.now();
 		String comment = commentTextField.getText();
-
+		Profile profile = profileList.get(loginId-1);
+		
 		if (!categoryInc.toString().isEmpty() && !amountString.isEmpty()) {
-			Income income = new Income(categoryInc, amount, date, comment);
+			Income income = new Income(categoryInc, amount, date, comment, profile);
 			System.out.println("Income added");
 			
 			incomeList.add(income);
@@ -223,4 +225,6 @@ public class IncomeDetailsController extends CommonPropertiesController {
 		saveButton.setVisible(true);
 		addButton.setVisible(false);
 	}
+
+	
 }

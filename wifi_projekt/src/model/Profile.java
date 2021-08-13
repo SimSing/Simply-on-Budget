@@ -1,15 +1,23 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 
 @Entity
+@Table(name="profile")
 @NamedQuery(name = "readAllProfiles", query = "select prf from Profile prf")
-public class Profile {
+public class Profile  {
 	
 
 	@Id
@@ -18,13 +26,62 @@ public class Profile {
 	public String accountName;
 	public String password;
 	
+	@OneToMany(mappedBy = "profile", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="profileId")
+	public List<FluctExpenditures> fluctExpendituresListPrf =  new ArrayList<>();
 	
+	@OneToMany(mappedBy = "profile", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="profileId")
+	public List<FixedExpenditures> fixedExpendituresListPrf =  new ArrayList<>();
+	
+	@OneToMany(mappedBy = "profile", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="profileId")
+	public List<Income> incomeListPrf =  new ArrayList<>();
+	
+	public List<FixedExpenditures> getFixedExpendituresListPrf() {
+		return fixedExpendituresListPrf;
+	}
+
+
+
+	public void setFixedExpendituresListPrf(List<FixedExpenditures> fixedExpendituresListPrf) {
+		this.fixedExpendituresListPrf = fixedExpendituresListPrf;
+	}
+
+
+
+	public List<Income> getIncomeListPrf() {
+		return incomeListPrf;
+	}
+
+
+
+	public void setIncomeListPrf(List<Income> incomeListPrf) {
+		this.incomeListPrf = incomeListPrf;
+	}
+
+
+
 	public Profile(String accountName, String password) {
-		super();
+		
 		
 		this.accountName = accountName;
 		this.password = password;
 	}
+
+
+
+	public List<FluctExpenditures> getFluctExpendituresListPrf() {
+		return fluctExpendituresListPrf;
+	}
+
+
+
+	public void setFluctExpendituresList(List<FluctExpenditures> fluctExpendituresListPrf) {
+		this.fluctExpendituresListPrf = fluctExpendituresListPrf;
+	}
+
+
 
 	public Profile() {
 		

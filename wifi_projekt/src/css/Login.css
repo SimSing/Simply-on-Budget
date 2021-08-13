@@ -1,0 +1,23 @@
+
+.text-field {
+	 -fx-text-box-border: transparent;
+	 -fx-prompt-text-fill: black;
+	 -fx-background-color:transparent
+	 }
+.text-field:focused {
+	-fx-focus-color: transparent;
+}	
+.password-field {
+	 -fx-text-box-border: transparent;
+	 -fx-prompt-text-fill: black;
+	 -fx-background-color:transparent
+	 }
+.password-field:focused {
+	-fx-focus-color: transparent;
+}
+.text-input {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background,-30%);
+}
+.text-input:focused {
+    -fx-prompt-text-fill: transparent;
+}	 

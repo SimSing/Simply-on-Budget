@@ -2,14 +2,22 @@ package model;
 
 import java.time.LocalDate;
 
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
 
 @Entity
-@NamedQuery(name ="readAllFluctExpenditures", query = "select fe from FluctExpenditures fe")
+@Table(name = "FluctExpenditures")
+@NamedQuery(name ="readAllFluctExpenditures", query = "SELECT fe FROM FluctExpenditures fe")// WHERE fe.profile.accountName= :idPrf")
+
+
 
 public class FluctExpenditures {
 	
@@ -22,18 +30,31 @@ public class FluctExpenditures {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public long id;
+	public Integer id;
 	public Category category;
 	public double price;
 	public LocalDate date;
 	public String comment;
 	public String path;
+	@ManyToOne(fetch = FetchType.EAGER)//,  cascade = CascadeType.ALL)
+	@JoinColumn(name="profileId")
+	public Profile profile;
 	
-	public FluctExpenditures() {
-		super();
-	}
+ 	public FluctExpenditures() {
+ 		super();
+ 	}
 	
-	public FluctExpenditures(Category category, double price, LocalDate date, String comment, String path) {
+public FluctExpenditures(FluctExpenditures copy) {
+	this.category = copy.category;
+	this.price = copy.price;
+	this.date = copy.date;
+	this.comment = copy.comment;
+	this.path = copy.path;
+	this.profile = copy.profile;
+}
+	
+	
+	public FluctExpenditures(Category category, double price, LocalDate date, String comment, String path, Profile profile) {
 		super();
 		
 		this.category = category;
@@ -41,13 +62,23 @@ public class FluctExpenditures {
 		this.date = date;
 		this.comment = comment;
 		this.path = path;
+		this.profile = profile;
 	}
 
-			
+
+	
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
 	public long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -86,14 +117,18 @@ public class FluctExpenditures {
 	@Override
 	public String toString() {
 		return "FluctExpenditures [id=" + id + ", category=" + category + ", price=" + price + ", date=" + date
-				+ ", comment=" + comment + ", path=" + path + "]";
+				+ ", comment=" + comment + ", path=" + path + ", profile=" + profile + "]";
 	}
 
 	public Object getCategoryIndex(int i) {
 		// TODO Auto-generated method stub
 		return category.ordinal();
 	}
+	
+
 
 	
-	
 }
+	
+	
+

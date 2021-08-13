@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import controller.CommonPropertiesController;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -11,7 +12,7 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 import model.Profile;
 
-public class ProfileRepositoryJPA implements ProfileRepository {
+public class ProfileRepositoryJPA extends CommonPropertiesController implements ProfileRepository {
 	
 	public static final String PROJECT_DB ="jdbc:derby:helloDB; create=true; user=simon; password=test";
 	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("projectJPA");
@@ -65,7 +66,8 @@ public class ProfileRepositoryJPA implements ProfileRepository {
 		
 		et.begin();
 		TypedQuery<Profile> query = em.createNamedQuery("readAllProfiles", Profile.class);
-		profileList = query.getResultList();
+		profileList = query.//setParameter("queryProfile", loginName).
+				getResultList();
 		et.commit();
 		
 		System.err.println("All Profile:" + "\n");

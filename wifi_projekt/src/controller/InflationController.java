@@ -1,7 +1,6 @@
 package controller;
 
 import java.net.URL;
-import java.time.Year;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -27,7 +26,7 @@ public class InflationController extends CommonPropertiesController {
 	private URL location;
 
 	@FXML
-	private ComboBox<Year> yearComboBox;
+	private ComboBox<Integer> yearComboBox;
 
 	@FXML
 	private TextField inflationTextField;
@@ -52,7 +51,7 @@ public class InflationController extends CommonPropertiesController {
     @FXML
     void onAddButtonPressed(ActionEvent event) {
     	
-    	Year inflationYear = yearComboBox.getSelectionModel().getSelectedItem();
+    	Integer inflationYear = yearComboBox.getSelectionModel().getSelectedItem();
     	String inflationFigureString = inflationTextField.getText();
     	double inflationFigure = Double.parseDouble(inflationFigureString);
     	
@@ -76,7 +75,7 @@ public class InflationController extends CommonPropertiesController {
     	Inflation inflation = selectedInflationProperty.get();
     	int index = inflationList.indexOf(inflation);
     	
-    	inflation.setInflationYear(yearComboBox.getSelectionModel().getSelectedItem());
+    	inflation.setInflationYear(yearComboBox.getSelectionModel().getSelectedItem().intValue());
     	double inflationFigureDouble = Double.parseDouble(inflationTextField.getText());
     	inflation.setInflationFigure(inflationFigureDouble);
     	
@@ -94,12 +93,14 @@ public class InflationController extends CommonPropertiesController {
 		
 		saveButton.setVisible(false);
 
-		List<Year> inflationYearsList = (inflationList.stream()
-													  .map(f -> f.getInflationYear())
+		List<Integer> inflationsYearsList = (filteredFluctExpendituresList.stream()
+													  .map(f -> f.getDate().minusYears(1).getYear())
+													  .distinct()
 													  .sorted()
 													  .collect(Collectors.toList()));
 		
-		yearComboBox.getItems().setAll(inflationYearsList);
+		
+		if(!inflationsYearsList.isEmpty()) {yearComboBox.getItems().setAll(inflationsYearsList);}
 		
 		selectedInflationProperty.addListener(new ChangeListener<Inflation>() {
 

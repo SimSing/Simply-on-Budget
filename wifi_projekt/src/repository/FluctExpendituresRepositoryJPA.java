@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import controller.CommonPropertiesController;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -12,7 +13,7 @@ import jakarta.persistence.TypedQuery;
 
 import model.FluctExpenditures;
 
-public class FluctExpendituresRepositoryJPA implements FluctExpendituresRepository{
+public class FluctExpendituresRepositoryJPA extends CommonPropertiesController implements FluctExpendituresRepository {
 	
 	public static final String PROJECT_DB ="jdbc:derby:helloDB; create=true; user=simon; password=test";
 	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("projectJPA");
@@ -66,7 +67,8 @@ public class FluctExpendituresRepositoryJPA implements FluctExpendituresReposito
 		
 		et.begin();
 		TypedQuery<FluctExpenditures> query = em.createNamedQuery("readAllFluctExpenditures", FluctExpenditures.class);
-		fluctExpendituresList = query.getResultList();
+		fluctExpendituresList = query//.setParameter("idPrf", loginName)
+				.getResultList();
 		et.commit();
 		
 		System.err.println("All FluctExpenditures:" + "\n");
@@ -75,22 +77,7 @@ public class FluctExpendituresRepositoryJPA implements FluctExpendituresReposito
 		return fluctExpendituresList;
 	}
 
-//	@Override
-//	public List<FluctExpenditures> readDatePriceCategories() {
-//
-//		List<FluctExpenditures> fluctExpendituresList = new ArrayList<>();
-//		EntityTransaction et = em.getTransaction();
-//		
-//		et.begin();
-//		TypedQuery<FluctExpenditures> query = em.createNamedQuery("readDatePriceCategories", FluctExpenditures.class);
-//		fluctExpendituresList = query.getResultList();
-//		et.commit();
-//		
-//		System.err.println("All FluctExpenditures:" + "\n");
-//		fluctExpendituresList.forEach(t -> System.err.println(t));
-//		
-//		return fluctExpendituresList;
-//	}
+
 
 	
 	

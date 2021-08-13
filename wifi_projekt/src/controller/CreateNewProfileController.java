@@ -4,12 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-
-import javax.security.auth.callback.ConfirmationCallback;
-
 import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -34,10 +29,10 @@ public class CreateNewProfileController extends CommonPropertiesController {
 
 	@FXML
 	private TextField userTextField;
-	
+
 	@FXML
 	private PasswordField confirmPasswordField;
-	
+
 	@FXML
 	private PasswordField passwordPasswordField;
 
@@ -61,6 +56,7 @@ public class CreateNewProfileController extends CommonPropertiesController {
 	@FXML
 	void onCreateButtonPressed(ActionEvent event) {
 
+		System.out.println("buttonTest");
 		userName = userTextField.getText();
 		password = passwordPasswordField.getText();
 		confirmPassword = confirmPasswordField.getText();
@@ -70,36 +66,58 @@ public class CreateNewProfileController extends CommonPropertiesController {
 			for (int i = 0; i <= userList.size() - 1; i++) {
 
 				if (userList.get(i).equals(userName)) {
-					
+
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Error");
 					alert.setContentText("User already exists, pls enter another name!");
 					alert.initOwner(createButton.getScene().getWindow());
 					alert.showAndWait();
-					
-				}else if(!password.equals(confirmPassword)) {
-					
+
+				} else if (!password.equals(confirmPassword)) {
+
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Error");
 					alert.setContentText("Passwords are not matching! Please re-enter passwords.");
 					alert.initOwner(createButton.getScene().getWindow());
 					alert.showAndWait();
 				}
-				
+
 				else {
+					for (int l = 0; l <= userList.size() - 1; l++) {
 
-					Profile profile = new Profile(userName, password);
-					System.out.println("Profile added");
+						if (userList.get(l).equals(userName)) {
+							Profile profile = new Profile(userName, password);
+							System.out.println("Profile added");
 
-					Stage stageLogin = (Stage) createButton.getScene().getWindow();
+							Stage stageLogin = (Stage) createButton.getScene().getWindow();
 
-					stageLogin.hide();
+							stageLogin.hide();
 
-					profileList.add(profile);
-					System.out.println(profileList);
+							profileList.add(profile);
+							System.out.println(profileList);
+						}
+					}
 				}
 			}
+			if (userList.size() == 0 && (!password.equals(confirmPassword))) {
 
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Error");
+				alert.setContentText("Passwords are not matching! Please re-enter passwords.");
+				alert.initOwner(createButton.getScene().getWindow());
+				alert.showAndWait();
+			} else {
+
+				Profile profile = new Profile(userName, password);
+				System.out.println("Profile added");
+
+				Stage stageLogin = (Stage) createButton.getScene().getWindow();
+
+				stageLogin.hide();
+
+				profileList.add(profile);
+				System.out.println(profileList);
+			}
 		}
 
 	}
@@ -117,8 +135,10 @@ public class CreateNewProfileController extends CommonPropertiesController {
 
 		createButton.disableProperty()
 				.bind(Bindings.createBooleanBinding(
-						() -> userTextField.getText().isEmpty() || passwordPasswordField.getText().isEmpty() || confirmPasswordField.getText().isEmpty(),
-						userTextField.textProperty(), passwordPasswordField.textProperty(), confirmPasswordField.textProperty()));
+						() -> userTextField.getText().isEmpty() || passwordPasswordField.getText().isEmpty()
+								|| confirmPasswordField.getText().isEmpty(),
+						userTextField.textProperty(), passwordPasswordField.textProperty(),
+						confirmPasswordField.textProperty()));
 
 	}
 }
